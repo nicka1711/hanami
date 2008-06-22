@@ -14,7 +14,7 @@ class Welcome_Controller extends Controller {
 		// You can assign anything variable to a view by using standard OOP
 		// methods. In my welcome view, the $title variable will be assigned
 		// the value I give it here.
-		$welcome->title = 'Welcome to Kohana!';
+		$welcome->title = 'Welcome to Hanami frontend!';
 
 		// An array of links to display. Assiging variables to views is completely
 		// asyncronous. Variables can be set in any order, and can be any type

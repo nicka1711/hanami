@@ -1,4 +1,4 @@
-<p class="intro">This is the default Kohana index page. You may also access this page as <code><?php echo html::anchor('welcome/index', 'welcome/index') ?></code>.</p>
+<p class="intro">This is the default Hanami frontend index page. You may also access this page as <code><?php echo html::anchor('welcome/index', 'welcome/index') ?></code>.</p>
 
 <p>To change what gets displayed for this page, edit <code>application/controllers/welcome.php</code>.</p>
 
