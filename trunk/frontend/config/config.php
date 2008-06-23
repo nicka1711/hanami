@@ -2,7 +2,7 @@
 /**
  * Domain name, with the installation directory. Default: localhost/kohana/
  */
-$config['site_domain'] = 'localhost/kohana/';
+$config['site_domain'] = 'hanami.dev';
 
 /**
  * Default protocol used to access the website. Default: http

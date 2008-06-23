@@ -7,9 +7,11 @@
 
 <style type="text/css">
 html { background: #83c018; }
-body { width: 700px; margin: 2em auto; background: transparent url('<?php echo url::base(FALSE).'kohana.png' ?>') center 0 no-repeat; font-size: 76%; font-family: Arial, Verdana, sans-serif; color: #111; line-height: 1.5; text-align: center; }
+body { width: 700px; margin: 2em auto; 
+	
+	font-size: 76%; font-family: Arial, Verdana, sans-serif; color: #111; line-height: 1.5; text-align: center; }
 div, h2, a, p, code, ul { font-family: inherit; color: inherit; padding: 0; margin: 0; text-align: baseline; text-decoration: none; }
-h2 { padding: 200px 0 0; }
+h2 { padding: 20px 0 0; }
 a { text-decoration: underline; }
 ul { list-style: none; padding: 1em 0; }
 ul li { display: inline; padding-right: 1em; }
