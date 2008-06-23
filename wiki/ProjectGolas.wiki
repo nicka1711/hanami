@@ -1,0 +1,5 @@
+#A list of goals that will help shape the nature of this project.
+
+= Introduction =
+
+What are the goals of Hanami
