@@ -34,7 +34,7 @@ div#wrapper {
 div, h2, a, p, code, ul { font-family: inherit; color: inherit; padding: 0; margin: 0; text-align: baseline; text-decoration: none; }
 h2 { 
 	padding: 100px 0 0; 
-	color: #FFF;
+
 }
 a { text-decoration: underline; }
 ul { list-style: none; padding: 1em 0; }
