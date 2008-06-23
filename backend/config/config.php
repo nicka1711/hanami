@@ -2,7 +2,7 @@
 /**
  * Domain name, with the installation directory. Default: localhost/kohana/
  */
-$config['site_domain'] = 'localhost/kohana/';
+$config['site_domain'] = 'admin.hanimi.dev';
 
 /**
  * Default protocol used to access the website. Default: http
@@ -14,7 +14,7 @@ $config['site_protocol'] = 'http';
  *
  * This can be removed by using URL rewriting.
  */
-$config['index_page'] = 'index.php';
+$config['index_page'] = 'admin.php';
 
 /**
  * Fake file extension that will be added to all generated URLs. Example: .html
