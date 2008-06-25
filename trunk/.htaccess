@@ -16,22 +16,14 @@ RewriteBase /
  
 # Rewrite admin. to admin.php/URL
 RewriteCond %{HTTP_HOST} ^admin.(.+) [NC]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
- 
+RewriteCond %{REQUEST_URI} !^/admin.php/
 RewriteRule ^(.*)$ /admin.php/$1 [L,QSA]
- 
- 
-# Rewrite my. to /profile/URL
-#RewriteCond %{HTTP_HOST} my.handballlust.lan$ [NC]
-#RewriteCond %{REQUEST_URI} !^/index.php/profile/
-#RewriteRule ^(.*)$ /index.php/profile/$1 [L]
  
  
 # Do not enable rewriting for files that exist
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
- 
+
  
 # Rewrite to front.php/URL
 RewriteRule ^(.*)$ index.php/$1 [PT,L]
