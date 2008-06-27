@@ -19,16 +19,18 @@ class hmedia_Core {
 	// stores the subdirectories the file types will be stored in
 	protected static $type_subdir = array('all'=>'','img'=>'images','css'=>'css','js'=>'js','php'=>'inc',);
 
+    // uses realpath and some logic to decide on a valid path (or false)
     private static function realpath($path)
     {
         return (($rp = realpath($path))) ? $rp : realpath(DOCROOT.$path);
     }
+    
 	/**
 	 * Adds a path to the directories to parse
 	 *
 	 * @param  $path the path to add (relative to DOCROOT or exact path)
 	 * @param  $type [optional] sets the type of file stored in this path (wiklll be searched ONLY for that file type)
-	 * @return  string
+	 * @return  boolean
 	 */
 	public static function add_path($path,$type="all")
 	{
@@ -61,6 +63,13 @@ class hmedia_Core {
         
 	}
     
+    /**
+	 * Tests if a certain path is in the Hmedia::paths array
+	 *
+	 * @param  $path the path to search for (relative to DOCROOT or exact path)
+	 * @param  $type [optional] the type of file the path is for
+	 * @return  boolean
+	 */
     public static function is_path($path,$type="all")
     {
         // unify the path
