@@ -9,6 +9,7 @@
  * @copyright  (c) 2007 Kohana Team
  * @license    http://kohanaphp.com/license.html
  */
+define('IN_PRODUCTION', FALSE);
 
 /**
  * Kohana website application directory. This directory should contain your
