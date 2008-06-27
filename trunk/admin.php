@@ -9,54 +9,25 @@
  * @copyright  (c) 2007 Kohana Team
  * @license    http://kohanaphp.com/license.html
  */
-define('IN_PRODUCTION', FALSE);
-
+ 
 /**
- * Kohana website application directory. This directory should contain your
- * application configuration, controllers, models, views, and other resources.
+ * Application directory (probably you wont want to change this setting)
  *
  * This path can be absolute or relative to this file.
  */
 $kohana_application = 'backend';
-
-/**
- * Kohana package files. This directory should contain the core/ directory, and
- * the resources you included in your download of Kohana.
- *
- * This path can be absolute or relative to this file.
- */
-$kohana_system = 'system';
-
-/**
- * Set the error reporting level. Unless you have a special need, E_ALL is a
- * good level for error reporting.
- */
-error_reporting(E_ALL & ~E_STRICT);
-
-/**
- * Turning off display_errors will effectively disable Kohana error display
- * and logging. You can turn off Kohana errors in application/config/config.php
- */
-ini_set('display_errors', TRUE);
-
-/**
- * If you rename all of your .php files to a different extension, set the new
- * extension here. This option can left to .php, even if this file is has a
- * different extension.
- */
-define('EXT', '.php');
-
-/**
- * Test to make sure that Kohana is running on PHP 5.1.3 or newer. Once you are
- * sure that your environment is compatible with Kohana, you can disable this.
- */
-version_compare(PHP_VERSION, '5.1.3', '<') and exit('Kohana requires PHP 5.1.3 or newer.');
 
 //
 // DO NOT EDIT BELOW THIS LINE, UNLESS YOU FULLY UNDERSTAND THE IMPLICATIONS.
 // ----------------------------------------------------------------------------
 // $Id: index.php 1631 2007-12-28 00:11:38Z Shadowhand $
 //
+
+// The versiopn of Hanami in use
+define("HANAMI_VERSION","r29");
+
+// require the common settings
+require("common.php");
 
 // Define the front controller name and docroot
 define('DOCROOT', getcwd().DIRECTORY_SEPARATOR);
