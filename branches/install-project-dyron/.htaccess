@@ -18,12 +18,16 @@ RewriteBase /
 RewriteCond %{HTTP_HOST} ^admin.(.+) [NC]
 RewriteCond %{REQUEST_URI} !^/admin.php/
 RewriteRule ^(.*)$ /admin.php/$1 [L,QSA]
- 
- 
+
+# Rewrite /install to install.php/URL
+#RewriteCond %{REQUEST_URI} ^/install/
+#RewriteCond %{REQUEST_URI} !^install.php/install/
+#RewriteRule ^(.*) install.php/install/$1 [PT,L,QSA]
+
 # Do not enable rewriting for files that exist
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
  
-# Rewrite to front.php/URL
-RewriteRule ^(.*)$ index.php/$1 [PT,L]
+# Rewrite to index.php/URL
+RewriteRule ^(.*)$ index.php/$1 [PT,L,QSA]
