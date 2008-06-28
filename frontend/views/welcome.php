@@ -9,7 +9,7 @@
 html {
 	margin: 0;
 	padding: 0;
-	background: #96ADCF url('<?php echo url::base(FALSE).'html.jpg' ?>') top left repeat-x;		 	
+	background: #96ADCF url('<?php echo url::base(FALSE).'/media/img/hanami/fade.jpg' ?>') top left repeat-x;		 	
 	height: 100%;
 }
 
@@ -17,7 +17,7 @@ body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	background: transparent url('<?php echo url::base(FALSE).'body.jpg' ?>') top left no-repeat;		 
+	background: transparent url('<?php echo url::base(FALSE).'/media/img/hanami/flower.jpg' ?>') top left no-repeat;		 
 	font-size: 76%;
 	font-family: Arial, Verdana, sans-serif; 
 	color: #111; 
