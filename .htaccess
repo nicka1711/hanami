@@ -10,8 +10,8 @@ RewriteBase /
  
  
 # Rewrite to no www
-RewriteCond %{HTTP_HOST} ^www.(.+) [NC]
-RewriteRule ^(.*)$ http://%1/$1 [L,R=301,QSA]
+#RewriteCond %{HTTP_HOST} ^www.(.+) [NC]
+#RewriteRule ^(.*)$ http://%1/$1 [L,R=301,QSA]
  
  
 # Rewrite admin. to admin.php/URL
