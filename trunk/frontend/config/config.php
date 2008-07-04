@@ -4,7 +4,7 @@
  * then a full URL will be used, eg: http://localhost/kohana/. If it only includes
  * the path, and a site_protocol is specified, the domain will be auto-detected.
  */
-$config['site_domain'] = IN_PRODUCTION ? $_SERVER['HTTP_HOST'] : 'hanami.dev';
+$config['site_domain'] =  'hanami.dev';
 
 /**
  * Force a default protocol to be used by the site. If no site_protocol is
