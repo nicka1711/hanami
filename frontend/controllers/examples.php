@@ -2,8 +2,10 @@
 /**
  * Contains examples of various Kohana library examples. You can access these
  * samples in your own installation of Kohana by going to ROOT_URL/examples.
+ * This controller should NOT be used in production. It is for demonstration
+ * purposes only!
  *
- * $Id: examples.php 2151 2008-02-23 03:39:31Z Shadowhand $
+ * $Id$
  *
  * @package    Core
  * @author     Kohana Team
@@ -11,6 +13,9 @@
  * @license    http://kohanaphp.com/license.html
  */
 class Examples_Controller extends Controller {
+
+	// Do not allow to run in production
+	const ALLOW_PRODUCTION = FALSE;
 
 	/**
 	 * Displays a list of available examples
@@ -29,7 +34,7 @@ class Examples_Controller extends Controller {
 		echo "<strong>Examples:</strong>\n";
 		echo "<ul>\n";
 
-		foreach($examples as $method)
+		foreach ($examples as $method)
 		{
 			if ($method == __FUNCTION__)
 				continue;
@@ -72,8 +77,8 @@ class Examples_Controller extends Controller {
 			'copyright' => '&copy; 2007 Kohana Team'
 		);
 
-		$view = $this->load->view('viewinview/container', $data);
-		$view->header = $this->load->view('viewinview/header', $data);
+		$view = new View('viewinview/container', $data);
+		$view->header = new View('viewinview/header', $data);
 
 		$view->render(TRUE);
 	}
@@ -97,7 +102,8 @@ class Examples_Controller extends Controller {
 	 */
 	function session()
 	{
-		$s = new Session();
+		// Gets the singleton instance of the Session library
+		$s = Session::instance();
 
 		echo 'SESSID: <pre>'.session_id()."</pre>\n";
 
@@ -111,7 +117,7 @@ class Examples_Controller extends Controller {
 	 */
 	function form()
 	{
-		$this->load->library('validation');
+		$validation = new Validation;
 
 		echo form::open('', array('enctype' => 'multipart/form-data'));
 
@@ -125,11 +131,11 @@ class Examples_Controller extends Controller {
 
 		if ( ! empty($_POST))
 		{
-			$this->validation->set_rules('imageup', 'required|upload[gif,png,jpg,500K]', 'Image Upload');
-			echo '<p>validation result: '.var_export($this->validation->run(), TRUE).'</p>';
+			$validation->set_rules('imageup', 'required|upload[gif,png,jpg,500K]', 'Image Upload');
+			echo '<p>validation result: '.var_export($validation->run(), TRUE).'</p>';
 		}
 
-		echo Kohana::debug($this->validation);
+		echo Kohana::debug($validation);
 		echo Kohana::lang('core.stats_footer');
 	}
 
@@ -148,24 +154,16 @@ class Examples_Controller extends Controller {
 			'reme' => '1'
 		);
 
-		// Same as CI, but supports passing an array to the constructor
-		$this->load->library('validation', $data);
+		$validation = new Validation($data);
 
-		// Looks familiar...
-		$this->validation->set_rules(array
-		(
-			// Format:
-			// key          friendly name,  validation rules
-			'user' => array('username',    '=trim|required[1,12]|regex[/[0-9]+/]'),
-			'pass' => array('password',    'required|=sha1'),
-			'reme' => array('remember me', 'required')
-		));
+		$validation->add_rules('user', 'required', 'length[1,12]')->pre_filter('trim', 'user');
+		$validation->add_rules('pass', 'required')->post_filter('sha1', 'pass');
+		$validation->add_rules('reme', 'required');
 
-		// Same syntax as before
-		$this->validation->run();
+		$result = $validation->validate();
 
-		// Same syntax, but dynamcially generated wth __get()
-		echo $this->validation->error_string;
+		var_dump($validation->errors());
+		var_dump($validation->as_array());
 
 		// Yay!
 		echo '{execution_time} ALL DONE!';
@@ -192,45 +190,46 @@ class Examples_Controller extends Controller {
 	*/
 	function database()
 	{
-		$this->load->database();
+		$db = new Database;
+		
 		$table = 'pages';
 		echo 'Does the '.$table.' table exist? ';
-		if ($this->db->table_exists($table))
+		if ($db->table_exists($table))
 		{
 			echo '<p>YES! Lets do some work =)</p>';
 
-			$query = $this->db->select('DISTINCT pages.*')->from($table)->get();
-			echo $this->db->last_query();
+			$query = $db->select('DISTINCT pages.*')->from($table)->get();
+			echo $db->last_query();
 			echo '<h3>Iterate through the result:</h3>';
-			foreach($query as $item)
+			foreach ($query as $item)
 			{
 				echo '<p>'.$item->title.'</p>';
 			}
 			echo '<h3>Numrows using count(): '.count($query).'</h3>';
-			echo 'Table Listing:<pre>'.print_r($this->db->list_tables(), TRUE).'</pre>';
+			echo 'Table Listing:<pre>'.print_r($db->list_tables(), TRUE).'</pre>';
 
 			echo '<h3>Try Query Binding with objects:</h3>';
 			$sql = 'SELECT * FROM '.$table.' WHERE id = ?';
-			$query = $this->db->query($sql, array(1));
-			echo '<p>'.$this->db->last_query().'</p>';
+			$query = $db->query($sql, array(1));
+			echo '<p>'.$db->last_query().'</p>';
 			$query->result(TRUE);
-			foreach($query as $item)
+			foreach ($query as $item)
 			{
 				echo '<pre>'.print_r($item, true).'</pre>';
 			}
 
 			echo '<h3>Try Query Binding with arrays (returns both associative and numeric because I pass MYSQL_BOTH to result():</h3>';
 			$sql = 'SELECT * FROM '.$table.' WHERE id = ?';
-			$query = $this->db->query($sql, array(1));
-			echo '<p>'.$this->db->last_query().'</p>';
+			$query = $db->query($sql, array(1));
+			echo '<p>'.$db->last_query().'</p>';
 			$query->result(FALSE, MYSQL_BOTH);
-			foreach($query as $item)
+			foreach ($query as $item)
 			{
 				echo '<pre>'.print_r($item, true).'</pre>';
 			}
 
 			echo '<h3>Look, we can also manually advance the result pointer!</h3>';
-			$query = $this->db->select('title')->from($table)->get();
+			$query = $db->select('title')->from($table)->get();
 			echo 'First:<pre>'.print_r($query->current(), true).'</pre><br />';
 			$query->next();
 			echo 'Second:<pre>'.print_r($query->current(), true).'</pre><br />';
@@ -240,7 +239,7 @@ class Examples_Controller extends Controller {
 			$query->rewind();
 			echo 'Rewound:<pre>'.print_r($query->current(), true).'</pre>';
 
-			echo '<p>Number of rows using count_records(): '.$this->db->count_records('pages').'</p>';
+			echo '<p>Number of rows using count_records(): '.$db->count_records('pages').'</p>';
 		}
 		else
 		{
@@ -255,21 +254,40 @@ class Examples_Controller extends Controller {
 	 */
 	function pagination()
 	{
-		$this->pagination = new Pagination(array(
-			// 'base_url'    => 'welcome/pagination_example/page/', // base_url will default to current uri
-			'uri_segment'    => 'page', // pass a string as uri_segment to trigger former 'label' functionality
-			'total_items'    => 254, // use db count query here of course
-			'items_per_page' => 10, // it may be handy to set defaults for stuff like this in config/pagination.php
-			'style'          => 'classic' // pick one from: classic (default), digg, extended, punbb, or add your own!
+		$pagination = new Pagination(array(
+			// Base_url will default to the current URI
+			// 'base_url'    => 'welcome/pagination_example/page/x',
+
+			// The URI segment (integer) in which the pagination number can be found
+			// The URI segment (string) that precedes the pagination number (aka "label")
+			'uri_segment'    => 'page',
+
+			// You could also use the query string for pagination instead of the URI segments
+			// Just set this to the $_GET key that contains the page number
+			// 'query_string'   => 'page',
+
+			// The total items to paginate through (probably need to use a database COUNT query here)
+			'total_items'    => 254,
+
+			// The amount of items you want to display per page
+			'items_per_page' => 10,
+
+			// The pagination style: classic (default), digg, extended or punbb
+			// Easily add your own styles to views/pagination and point to the view name here
+			'style'          => 'classic',
+
+			// If there is only one page, completely hide all pagination elements
+			// Pagination->render() will return an empty string
+			'auto_hide'      => TRUE,
 		));
 
-		// Just echoing it is enough to display the links (__toString() rocks!)
-		echo 'Classic style: '.$this->pagination;
+		// Just echo to display the links (__toString() rocks!)
+		echo 'Classic style: '.$pagination;
 
-		// You can also use the create_links() method and pick a style on the fly if you want
-		echo '<hr />Digg style:     '.$this->pagination->create_links('digg');
-		echo '<hr />Extended style: '.$this->pagination->create_links('extended');
-		echo '<hr />PunBB style:    '.$this->pagination->create_links('punbb');
+		// You can also use the render() method and pick a style on the fly if you want
+		echo '<hr /> Digg style:     ', $pagination->render('digg');
+		echo '<hr /> Extended style: ', $pagination->render('extended');
+		echo '<hr /> PunBB style:    ', $pagination->render('punbb');
 		echo 'done in {execution_time} seconds';
 	}
 
@@ -278,11 +296,9 @@ class Examples_Controller extends Controller {
 	 */
 	function user_agent()
 	{
-		$this->load->library('user_agent');
-
-		foreach(array('agent', 'browser', 'version') as $key)
+		foreach (array('agent', 'browser', 'version') as $key)
 		{
-			echo $key.': '.$this->user_agent->$key.'<br/>'."\n";
+			echo $key.': '.Kohana::user_agent($key).'<br/>'."\n";
 		}
 
 		echo "<br/><br/>\n";
@@ -294,7 +310,7 @@ class Examples_Controller extends Controller {
 	 */
 	/*function payment()
 	{
-		$credit_card = new Payment();
+		$credit_card = new Payment;
 
 		// You can also pass the driver name to the library to use multiple ones:
 		$credit_card = new Payment('Paypal');
