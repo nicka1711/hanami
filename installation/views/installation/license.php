@@ -1,6 +1,6 @@
-<p><a href="<?php echo url::site('install') ?>">&laquo; Back</a></p>
+<p><a href="<?php echo url::site('installation/index') ?>">&laquo; Back</a></p>
 
-<form action="<?php echo url::site('install/license') ?>" method="post">
+<form action="<?php echo url::site(Router::$current_uri) ?>" method="post">
   <fieldset>
     <legend><?php echo Kohana::lang('install.license') ?></legend>
 
