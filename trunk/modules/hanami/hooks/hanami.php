@@ -10,21 +10,65 @@
  * @license    
  */
 
-define('HANAMI_VERSION', '0.1');
-define('HANAMI_CODENAME', '');
+define('HANAMI_VERSION',  '0.1');
+define('HANAMI_CODENAME', 'Paarhufer');
 
 class Hanami
 {
-	/*public function __construct()
+	public function __construct()
 	{
-		IN_PRODUCTION or header('Location: /install.php');
-	}*/
+		Event::add('system.routing', array($this, 'install'));
+		Event::add('system.display', array($this, 'powered'));
+
+		$modules = Config::item('core.modules');
+
+		if (!is_dir('installation'))
+		{
+			// Delete install app from Config::$include_paths
+			unset($modules[0]);
+		}
+
+		$installed_mods = array();
+		/**
+		 *	@todo get the installed module list from DB
+		 */
+		foreach(Module_Model::factory()->find_all() as $module)
+		{
+			is_dir(MODPATH.$module->name) and $installed_mods[] = MODPATH.$module->name;
+		}
+
+		// Set module include paths
+		Config::set('core.modules', array_merge($modules, $installed_mods));
+
+		Log::add('debug', 'Hanami Core Hook initialized');
+	}
+
+	public function install()
+	{
+		IN_PRODUCTION and is_dir('installation') and (strpos(url::current(),'installation') === FALSE) and url::redirect('installation');
+	}
 
 	function powered()
 	{
-		Kohana::$output = str_replace('</body>', '<p>Hanami v'.HANAMI_VERSION.'</p></body>', Kohana::$output);
+				if (Config::item('core.render_stats') === TRUE)
+		{
+			// Replace the global template variables
+			Kohana::$output = str_replace(
+				array
+				(
+					'{hanami_version}',
+					'{hanami_codename}',
+				),
+				array
+				(
+					HANAMI_VERSION,
+					HANAMI_CODENAME,
+				),
+				Kohana::$output
+			);
+		}
 	}
 }
 
-//new Hanami;
-Event::add('system.display', array('Hanami', 'powered'));
+new Hanami;
+
