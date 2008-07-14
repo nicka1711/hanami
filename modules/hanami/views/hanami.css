@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* CSS Document */
+
+html {
+	margin: 0;
+	padding: 0;
+	background: #96ADCF url('<?php echo url::base(FALSE).'media/img/hanami/fade.jpg' ?>') top left repeat-x;		 	
+	height: 100%;
+}
+
+body { 
+	height: 100%;
+	margin: 0;
+	padding: 100px 0 0;
+	background: transparent url('<?php echo url::base(FALSE).'media/img/hanami/flower.jpg' ?>') top left no-repeat;		 
+	font-size: 76%;
+	font-family: Arial, Verdana, sans-serif; 
+	color: #111; 
+	line-height: 1.5; 
+	text-align: center; 
+}
+
+div#page {
+	background: #ffffff;
+	width: 700px; 
+	margin: 0 auto 0;
+	padding: 0 2em 0 2em;
+}
+
+div#installation { 
+	width: 400px; 
+	margin: 0 auto;
+	padding: 0 2em 0 2em;
+}
+
+div, h1, h2, a, p, code, ul { font-family: inherit; color: inherit; padding: 0; margin: 0; text-decoration: none; }
+
+a { text-decoration: underline; }
+ul { list-style: none; padding: 1em 0; }
+ul li { display: inline; padding-right: 1em; }
+ul li:before { content: '» '; }
+code { color: #381a0c; }
+p.intro { padding: 1em 0; font-size: 1.2em; }
+p.copyright { font-size: 0.8em; text-transform: uppercase; color: #8f444b; }
+
+#installation button#next {
+	padding: .2em .5em;
+}
+
+#installation button#next:after {
+	content: "»";
+    margin-left: .5em;
+}
