@@ -2,9 +2,11 @@
 
 $lang = array
 (
-	'choose_language' => 'Bitte wähle eine Sprache aus:',
-	'confirm'         => 'Bestätigen',
-	'installation'    => 'Installation',
-	'license'         => 'Lizenz',
-	'welcome'         => 'Willkommen',
+	'available_languages' => 'zur VerfÃ¼gung stehende Sprachen',
+	'choose_language'     => 'Bitte wÃ¤hle eine Sprache aus:',
+	'confirm'             => 'BestÃ¤tigen',
+	'installation'        => 'Installation',
+	'license'             => 'Lizenz',
+	'next'                => 'Weiter',
+	'welcome'             => 'Willkommen',
 );
