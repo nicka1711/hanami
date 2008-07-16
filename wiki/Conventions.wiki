@@ -1,0 +1,21 @@
+#summary The programming conventions of the Hanami project.
+#labels Phase-Design
+
+= Introduction =
+
+While one of Kohanas and our principle is "convention over configuration" this list should give you 
+
+= Accepted Conventions =
+  * Follow the [http://trac.kohanaphp.com/wiki/CodingStyle Kohana CodingStyle]
+  * Convention over Configuration
+  * Using the latest [http://svn.kohanaphp.com/trunk Kohana]
+  * Using [http://www.w3.org/TR/html401/ HTML 4.01 strict]
+
+= Conventions in discussion =
+
+  * validation should be done in the model.
+  * Module views are in views/[module_name]/
+  * I think it's also wise to enforce a views convention. Best would be the standard controller to view mapping. So 'localhost/blog/post' url will have the view 'views/blog/post.php', 'localhost/blog/' -> views/blog/index.php etc. This will make for a consistent organisation of the view files.
+  * What should we use as preferred javascript lib? +1 for jQuery
+  * front- and backend have to contain the _default route, while modules do not
+
