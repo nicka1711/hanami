@@ -12,10 +12,17 @@ class Home_Controller extends Frontend_Controller {
 
 	function index()
 	{
+		empty($_GET['month']) and $_GET['month'] = date('n'); // Current month
+		empty($_GET['year'])  and $_GET['year']  = date('Y'); // Current year
+
+		$calendar = Calendar::factory($_GET['month'], $_GET['year'], Kohana::locale('calendar.start_monday'))
+			->standard('today')
+			->standard('weekends')
+			->standard('prev-next');
+
 		//$this->page_title[] = 'foo';
 
-		//$user = new User_Model; 
 		$this->template->content = View::factory('home')
-			->set('calendar', new Calendar());
+			->set('calendar', $calendar->render('calendar'));
 	}
 }
