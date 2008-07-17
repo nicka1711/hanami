@@ -22,23 +22,26 @@ class Hanami
 
 		$modules = Config::item('core.modules');
 
-		if (!is_dir('installation'))
+		if (true or !is_dir('installation'))
 		{
 			// Delete install app from Config::$include_paths
 			unset($modules[0]);
 		}
 
 		$installed_mods = array();
-		/**
-		 *	@todo get the installed module list from DB
-		 */
 		foreach(Module_Model::factory()->find_all() as $module)
 		{
+			/**
+			 * @todo Validate the modules via /config/[module].php or something
+			 */
 			is_dir(MODPATH.$module->name) and $installed_mods[] = MODPATH.$module->name;
 		}
 
 		// Set module include paths
-		Config::set('core.modules', array_merge($modules, $installed_mods));
+		Config::set('core.modules', array_merge($installed_mods, $modules));
+
+		// Re-process the include paths
+		Config::include_paths(TRUE);
 
 		Log::add('debug', 'Hanami Core Hook initialized');
 	}
@@ -50,7 +53,7 @@ class Hanami
 
 	function powered()
 	{
-				if (Config::item('core.render_stats') === TRUE)
+		if (Config::item('core.render_stats') === TRUE)
 		{
 			// Replace the global template variables
 			Kohana::$output = str_replace(

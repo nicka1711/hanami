@@ -10,7 +10,7 @@ $locale['phone_format'] = '\d{3,} \d{4,}';
 // Calendar settings
 $locale['calendar'] = array
 (
-	'start_monday' = TRUE
+	'start_monday' => TRUE
 );
 
 // Default date format

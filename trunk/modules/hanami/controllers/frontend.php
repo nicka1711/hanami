@@ -56,7 +56,7 @@ class Frontend_Controller extends Template_Controller {
 
 			->set('page_id', $this->page_id)
 			->set('page_title', page::title($this->page_title))
-			->set('title', !empty($this->title) ? $this->title : end($this->page_title));
+			->set('title', !empty($this->title) ? $this->title : end($this->page_title))
 			//->set('site_name', $this->config['site_name'])
 			//	->set('author', $this->config['author'])
 			//	->set('description', $this->config['site_description'])
@@ -65,7 +65,7 @@ class Frontend_Controller extends Template_Controller {
 			//	->set('site_name', $this->config['site_name'])
 			//	->set('site_slogan', $this->config['page_title']))
 				// ->set('breadcrumb', View::factory('breadcrumb')->set('crumbs', html::breadcrumb()))
-			// ->set('navigation', $this->navigation())
+			->set('navigation', View::factory('navigation'));
 			// ->set('footer', $this->footer);
 
 		// Convert xhtml to html
