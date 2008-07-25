@@ -9,7 +9,7 @@
 
 	public function overview($limit = NULL) 
 	{
-		empty($limit) and $limit = Config::item('limits.overview');
+		empty($limit) and $limit = Kohana::config('limits.overview');
 		
 		$sql = "SELECT
                     post.id, 
@@ -27,7 +27,7 @@
                     status = 'published'
                 LIMIT
                     0, ?;";
-		$query = $this->db->query($sql, array(Config::item('locale.date_time.datetime'), $limit));
+		$query = $this->db->query($sql, array(Kohana::config('locale.date_time.datetime'), $limit));
 		$entries = array();
 		foreach($query->result() as $record)
 		{

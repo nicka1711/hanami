@@ -81,7 +81,7 @@ class Blog_Demo_Controller extends Controller {
 
 		// Default options
 		($page  > 0) or $page  = 1;
-		($limit > 0) or $limit = (int) Config::item('blog.article_per_page');
+		($limit > 0) or $limit = (int) Kohana::config('blog.article_per_page');
 
 		// Calculate the offset
 		$offset = ($page === 1) ? 0 : (int) (($page - 1) * $limit);
