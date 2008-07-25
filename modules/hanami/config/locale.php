@@ -5,13 +5,14 @@
  * Default language locale name.
  * @see http://php.net/locales
  */
-$config['language'] = 'en_US';
+//$config['language'] = 'en_US';
+$config['language'] = array('de_DE', 'German_Germany');
 
-$config['available_langs'] = array
+/*$config['available_langs'] = array
 (
 	'en_US',
 	'de_DE',
-);
+		);*/
 
 /**
  * Default country locale.
