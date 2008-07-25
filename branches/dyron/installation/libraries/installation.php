@@ -15,7 +15,7 @@ class Installation {
 
 	public function __construct()
 	{
-		Log::add('debug', 'Installation Library initialized');
+		Kohana::log('debug', 'Installation Library initialized');
 	}
 
 
