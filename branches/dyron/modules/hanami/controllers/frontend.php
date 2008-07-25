@@ -2,6 +2,9 @@
 
 class Frontend_Controller extends Template_Controller {
 
+	protected $page;
+
+	// Additional template files
 	public $files	= array
 	(
 		'header'     => 'header',
@@ -9,17 +12,8 @@ class Frontend_Controller extends Template_Controller {
 		'footer'     => 'footer'
 	);
 
-	protected $page_id = 'page';
-	protected $page_title = array();
-	protected $title_seperator = '-';
-
-	protected $xhtml = false;
-
-	protected $header;
-	protected $footer;
-
+	// Forcing a login page
 	public $login_required = FALSE;
-
 
 	/**
 	 * Template loading and setup routine.
@@ -28,10 +22,8 @@ class Frontend_Controller extends Template_Controller {
 	{
 		parent::__construct();
 
-		$this->xhtml = request::accepts('xhtml', true);
-
-		// Load cache
-		$this->cache = new Cache;
+		// Load page
+		$this->page = new Page;
 
 		// Load session
 		$this->session = Session::instance();
@@ -39,43 +31,26 @@ class Frontend_Controller extends Template_Controller {
 		// Redirect to login if needed
 		if ($this->login_required === TRUE)
 		{
-			!Auth::factory()->logged_in() and url::current() !== 'login' and url::redirect('/login');
+			!Auth::factory()->logged_in() and (strpos(url::current(),'login') === FALSE) and url::redirect('/login');
 		}
 	}
-
-
-
-
-
 
 	/**
-	 *
+	 * Render the loaded template.
 	 */
-	private function _page_title($title = NULL, $seperator = '')
-	{
-		if(!empty($title))
-		{
-			$this->page_title[] = $title;
-		}
-
-		if(empty($seperator))
-		{
-			$seperator = $this->title_seperator;
-		}
-
-		return implode(' '.$seperator.' ', array_reverse($this->page_title));
-	}
-
-	public function _display()
+	public function _render()
 	{
 		$this->template
-			->set_global('lang', substr(Config::item('locale.language'), 0, 2))
-			//->set('doctype', View::factory('header/'.(($this->xhtml) ? 'xhtml' : 'html')))
-			//->set('content_type', (($this->xhtml) ? 'application/xhtml+xml' : 'text/html'))
+			->set_global('lang', $this->page->lang)
+			->set('doctype', View::factory('doctypes/'.(($this->page->xhtml) ? 'xhtml' : 'html')))
+			->set('content_type', (($this->page->xhtml) ? 'application/xhtml+xml' : 'text/html'))
 			->set('charset', 'utf-8')
-			->set('page_id', $this->page_id)
-			->set('page_title', $this->_page_title())
-			->set('title', !empty($this->title) ? $this->title : end($this->page_title));
+
+			->set('styles', $this->page->style())
+
+			->set('page_id', $this->page->id)
+			->set('page_title', $this->page->title())
+			->set('title', !empty($this->title) ? $this->title : end($this->page->title))
 			//->set('site_name', $this->config['site_name'])
 			//	->set('author', $this->config['author'])
 			//	->set('description', $this->config['site_description'])
@@ -84,18 +59,17 @@ class Frontend_Controller extends Template_Controller {
 			//	->set('site_name', $this->config['site_name'])
 			//	->set('site_slogan', $this->config['page_title']))
 				// ->set('breadcrumb', View::factory('breadcrumb')->set('crumbs', html::breadcrumb()))
-			// ->set('navigation', $this->navigation())
+			->set('navigation', $this->navigation());
 			// ->set('footer', $this->footer);
 
 		// Convert xhtml to html
-		if ( ! $this->xhtml)
+		if ( ! $this->page->xhtml)
 		{
 			Event::add('system.display', array('html', 'convert'));
 		}
 
 		// Display the loaded template
-		parent::_display();
-
+		parent::_render();
 	}
 
 
@@ -103,7 +77,7 @@ class Frontend_Controller extends Template_Controller {
 	{
 		return isset($this->files['navigation'])
 			? View::factory($this->files['navigation'])
-				->set('teams', ORM::factory('page_team')->find_related_teams())
+				//->set('teams', ORM::factory('page_team')->find_related_teams())
 			: '';
 	}
 
