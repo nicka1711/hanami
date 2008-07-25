@@ -8,7 +8,7 @@ class Blog_Controller extends Frontend_Controller {
 	{
 		parent::__construct();
 
-		$this->page_title[] = Kohana::lang('blog.blog');
+		$this->page->title[] = Kohana::lang('blog.blog');
 	}
 
 	public function index()
@@ -32,7 +32,7 @@ class Blog_Controller extends Frontend_Controller {
 			$list[date('Y', $time)][date('F', $time)][] = $article;
 		}
 
-		$this->page_title[] = Kohana::lang('blog.archive');
+		$this->page->title[] = Kohana::lang('blog.archive');
 
 		$this->template->content = View::factory('blog/archive')
 			->set('list', $list);
@@ -134,7 +134,7 @@ class Blog_Controller extends Frontend_Controller {
 		// Find article related comments
 		$comments = $article->find_related_blog_comments();
 
-		$this->page_title[] = $article->title;
+		$this->page->title[] = $article->title;
 
 		$this->template->content = View::factory('blog/article/details')
 			->set('article', $article)
@@ -151,7 +151,7 @@ class Blog_Controller extends Frontend_Controller {
 	public function articles()
 	{
 		// Article model
-		$article = ORM::factory('blog_article');
+		$articles = ORM::factory('blog_article');
 
 		// Paging option
 		$page  = (int) $this->input->get('page');//$_GET['page'];
@@ -159,19 +159,19 @@ class Blog_Controller extends Frontend_Controller {
 
 		// Default options
 		($page  > 0) or $page  = 1;
-		($limit > 0) or $limit = (int) Config::item('blog.article_per_page');
+		($limit > 0) or $limit = (int) Kohana::config('blog.article_per_page');
 
 		// Calculate the offset
 		$offset = ($page === 1) ? 0 : (int) (($page - 1) * $limit);
 
 		$this->template->content = View::factory('blog/articles')
-			->set('articles', $article
+			->set('articles', $articles
 				->orderby('posted', 'DESC')
 				->find_all($limit, $offset))
 			->set('pagination', Pagination::factory(array(
 					'query_string'   => 'page',
 					'auto_hide'      => TRUE,
-					'total_items'    => $article->count_all(),
+					'total_items'    => $articles->count_all(),
 					'items_per_page' => $limit)));
 		
 	}
