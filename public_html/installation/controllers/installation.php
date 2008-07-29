@@ -19,6 +19,14 @@ class Installation_Controller extends Template_Controller {
 
 //	public $page_id = 'installation';
 
+
+
+private $steps = array
+(
+	'welcome',
+	'language',
+);
+
 	public function __construct()
 	{
 		parent::__construct();
