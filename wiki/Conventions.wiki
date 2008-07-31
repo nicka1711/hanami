@@ -17,7 +17,7 @@ While one of Kohanas and our principle is "convention over configuration" this l
   * Module views are in views/_module_name_/
   * I think it's also wise to enforce a views convention. Best would be the standard controller to view mapping. So 'localhost/blog/post' url will have the view 'views/blog/post.php', 'localhost/blog/' -> views/blog/index.php etc. This will make for a consistent organisation of the view files.
   * What should we use as preferred javascript lib? +1 for jQuery
-  * front- and backend have to contain the _default route, while modules do not
+  * front- and backend have to contain the default route, while modules do not
 
 
 = HTML =
