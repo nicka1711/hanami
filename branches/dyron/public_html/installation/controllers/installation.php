@@ -19,7 +19,7 @@ class Installation_Controller extends Template_Controller {
 
 //	public $page_id = 'installation';
 
-
+private $session;
 
 private $steps = array
 (
@@ -31,19 +31,22 @@ private $steps = array
 	{
 		parent::__construct();
 
+		$this->session = Session::instance();
+
 		/**
 		 * TODO: nessecary each request?
 		 */
-		$avail_langs = array('de_DE');//Kohana::config('locale.available_langs');
+		$avail_langs = array('de_DE', 'en_US', 'dk_DK');//Kohana::config('locale.available_langs');
 		$langs = array();
-		foreach($avail_langs as $lang => $name)
+		foreach($avail_langs as $lang)
 		{
-			Kohana::user_agent('accept_lang', str_replace('_', '-', strtolower($lang))) and $langs[] = $lang;
+			$accept_lang = str_replace('_', '-', strtolower($lang));
+
+			if (Kohana::user_agent('accept_lang', $accept_lang))
+				$langs[] = $lang;
 		}
 		$this->lang = current($langs);
-
-		Kohana::config('locale.language', $this->lang);
-
+		//Kohana::config('locale.language', $this->lang);
 
 		$this->application = new Installation;
 
@@ -56,36 +59,38 @@ private $steps = array
 	 */
 	public function index()
 	{
-		// Redirect to the next step "license", if a language is choosen
-		(isset($_POST['lang'][0])) and url::redirect('installation/license');
-
-		// Filling the template
-		$this->page_title[] = Kohana::lang('install.welcome');
-		$this->template->content = View::factory('installation/welcome')
-			->set('avail_langs', array('de_DE'))//Kohana::config('locale.available_langs'))
-			->set('accept_lang', $this->lang);
+		url::redirect('installation/welcome');
 	}
 
+	/**
+	 * 
+	 */
 	public function license()
 	{
 		// Redirect to the next step "setup", if the license is accepted
 		(isset($_POST['accept']) and $_POST['accept'] === 'on') and url::redirect('installation/setup');
 
 		// Filling the template
-		$this->page_title[] = Kohana::lang('install.license');
+		$this->page->title[] = Kohana::lang('install.license');
 		$this->template->content = View::factory('installation/license');
 	}
 
+	/**
+	 * 
+	 */
 	public function setup()
 	{
 		// Redirect to the next step "setup", if the license is accepted
 		(isset($_POST)) and url::redirect('installation/database');
 
 		// Filling the template
-		$this->page_title[] = Kohana::lang('install.setup');
+		$this->page->title[] = Kohana::lang('install.setup');
 		$this->template->content = View::factory('installation/setup');
 	}
 
+	/**
+	 * 
+	 */
 	public function database()
 	{
 		$this->template->content = View::factory('installation/database')
@@ -95,7 +100,20 @@ private $steps = array
 
 
 
+	/**
+	 * 
+	 */
+	public function welcome()
+	{
+		// Redirect to the next step "license", if a language is choosen
+		(isset($_POST['lang'][0])) and url::redirect('installation/license');
 
+		// Filling the template
+		$this->page->title[] = Kohana::lang('install.welcome');
+		$this->template->content = View::factory('installation/welcome')
+			->set('avail_langs', array('de_DE', 'en_US', 'dk_DK'))//Kohana::config('locale.available_langs'))
+			->set('accept_lang', $this->lang);
+	}
 
 
 
