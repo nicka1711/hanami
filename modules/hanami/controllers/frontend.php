@@ -46,7 +46,9 @@ class Frontend_Controller extends Template_Controller {
 			->set('content_type', (($this->page->xhtml) ? 'application/xhtml+xml' : 'text/html'))
 			->set('charset', 'utf-8')
 
-			->set('styles', $this->page->style())
+			->set('scripts', $this->page->scripts())
+
+			->set('styles', $this->page->styles())
 
 			->set('page_id', $this->page->id)
 			->set('page_title', $this->page->title())

@@ -6,10 +6,10 @@
 <?php 
 
 	/*echo $scripts;*/
-	echo '    '.$styles;
+	//echo '    '.$styles;
 
 ?>
-
+    <link type="text/css" rel="stylesheet" media="screen" href="/styles/screen.css"/>
 
     <title><?php echo $page_title ?></title>
 
@@ -24,7 +24,7 @@
 
         <!-- @todo replace hard-coded admin link -->
         <ul>
-			<li><a href="http://admin.hanami"><?php echo Kohana::lang('admin.administration') ?></a></li>
+			<li><a href="http://admin.<?php echo Kohana::config('core.site_domain')?>"><?php echo Kohana::lang('admin.administration') ?></a></li>
 		</ul>
       </div>
 

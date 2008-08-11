@@ -15,7 +15,8 @@ class Page {
 	protected $page_title = array();*/
 	protected $title_seperator = '-';
 
-	public $style = array();
+	public $scripts = array();
+	public $styles = array();
 
 	public $xhtml = false;
 
@@ -27,8 +28,10 @@ class Page {
 		$this->lang = substr($lang[0], 0, 2);
 
 
+		$this->scripts[] = html::script('/scripts/jquery-1.2.6');
 
-		$this->style[] = html::stylesheet('styles/screen', 'screen');
+		$this->styles[] = '<link type="text/css" rel="stylesheet" media="screen" href="/styles/screen.css"/>';
+		//html::stylesheet('/styles/screen', 'screen');
 	}
 
 	public function config()
@@ -42,10 +45,18 @@ class Page {
 	/**
 	 * 
 	 */
-	public function style()
-		{
-			return implode("\n    ", $this->style);
-		}
+	public function scripts()
+	{
+		return implode("\n    ", $this->scripts);
+	}
+
+	/**
+	 * 
+	 */
+	public function styles()
+	{
+		return implode("\n    ", $this->styles);
+	}
 
 	/**
 	 *
