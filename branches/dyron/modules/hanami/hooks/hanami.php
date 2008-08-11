@@ -17,33 +17,34 @@ class Hanami
 {
 	public function __construct()
 	{
-		$modules = Kohana::config('core.modules');
+		$required = Kohana::config('core.modules');
 
 		// Remove the installation module from the module stack 
-		if(!IN_PRODUCTION or !is_dir('installation'))
+		if(!is_dir(DOCROOT.'installation'))
 		{
-			unset($modules[0]);
+			unset($required[0]);
 		}
 
-		$installed_mods = Module_Model::factory();
-		foreach($installed_mods->find_all() as $module)
+		$modules   = Module_Model::factory();
+		$installed = array();
+		foreach($modules->find_all() as $module)
 		{
 			/**
 			  * @todo More module verifying
 			  */ 
 			if (is_dir(MODPATH.$module->name))
-				$modules[] = MODPATH.$module->name;
+				$installed[] = MODPATH.$module->name;
 		}
 
-		Kohana::config_set('core.modules', $modules);
+		Kohana::config_set('core.modules', array_merge($installed, $required));
 
-		Event::add('system.routing', array(__CLASS__, 'install'));
+		//Event::add('system.routing', array(__CLASS__, 'install'));
 		Event::add('system.display', array(__CLASS__, 'render'));
 	}
 
 	static public function install()
 	{
-		IN_PRODUCTION and is_dir(DOCROOT.'installation') and (strpos(url::current(), 'installation') === FALSE) and url::redirect('/installation');
+		is_dir(DOCROOT.'installation') and (strpos(url::current(), 'installation') === FALSE) and url::redirect('/installation');
 	}
 
 	static public function render()

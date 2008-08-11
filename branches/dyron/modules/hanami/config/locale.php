@@ -6,7 +6,7 @@
  * @see http://php.net/locales
  */
 //$config['language'] = 'en_US';
-$config['language'] = array('de_DE', 'German_Germany');
+$config['language'] = array('en_US');//'de_DE', 'German_Germany');
 
 /*$config['available_langs'] = array
 (
