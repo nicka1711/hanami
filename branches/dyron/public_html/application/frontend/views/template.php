@@ -34,7 +34,7 @@
 <?php echo $content ?>
 
       </div>
-<?php echo Kohana::debug(Kohana::config('core.modules')); ?>
+
 <p class="copyright hanami">Powerd by HanamiCMS v{hanami_version}<br/>Copyright &copy;2008 Hanami Team</p>
 <p class="copyright kohana">Rendered in {execution_time} seconds, using {memory_usage} of memory<br/>Copyright &copy;2007-2008 Kohana Team</p>
 </div>

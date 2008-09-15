@@ -64,7 +64,7 @@ class Auth_Controller extends Backend_Controller {
 
 		// Load content
 		$this->template->content = View::factory('auth/login')
-			->set('username', /*isset($_POST['username']) ? $_POST['username'] :*/ '')
+			->set('username', isset($_POST['username']) ? $_POST['username'] : '')
 			->set('errors', $_POST->errors('form'));
 	}
 
