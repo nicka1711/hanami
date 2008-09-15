@@ -4,13 +4,8 @@ class Blog_Comment_Model extends ORM {
 
 	protected $belongs_to = array
 	(
-		'blog_articles'
+		'blog_article'
 	);
-
-	public function __construct($id = FALSE)
-	{
-		parent::__construct($id);
-	}
 	
 	/*function count($ref_id)
 	{

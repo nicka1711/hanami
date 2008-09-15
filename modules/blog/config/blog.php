@@ -1,5 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
+/**
+ * Blog module configuration. 
+ */
 
-$config['blog'] = array(
-	'articles_per_page' => 5,
+/**
+ * 
+ */
+$config = array
+(
+	'article_per_page' => 5,
 );
+
+
