@@ -18,9 +18,9 @@ class Hanami
 	public function __construct()
 	{
 		Event::add('system.routing', array($this, 'install'));
-		Event::add('system.display', array($this, 'powered'));
+		Event::add('system.display', array($this, 'render'));
 
-		$modules = Config::item('core.modules');
+		$modules = Kohana::config('core.modules');
 
 		if (true or !is_dir('installation'))
 		{
@@ -38,12 +38,12 @@ class Hanami
 		}
 
 		// Set module include paths
-		Config::set('core.modules', array_merge($installed_mods, $modules));
+		Kohana::config_set('core.modules', array_merge($installed_mods, $modules));
 
 		// Re-process the include paths
-		Config::include_paths(TRUE);
+		Kohana::include_paths(TRUE);
 
-		Log::add('debug', 'Hanami Core Hook initialized');
+		Kohana::log('debug', 'Hanami Core Hook initialized');
 	}
 
 	public function install()
@@ -51,9 +51,9 @@ class Hanami
 		IN_PRODUCTION and is_dir('installation') and (strpos(url::current(),'installation') === FALSE) and url::redirect('installation');
 	}
 
-	function powered()
+	public function render()
 	{
-		if (Config::item('core.render_stats') === TRUE)
+		if (Kohana::config('core.render_stats') === TRUE)
 		{
 			// Replace the global template variables
 			Kohana::$output = str_replace(

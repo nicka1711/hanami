@@ -42,10 +42,10 @@ class Frontend_Controller extends Template_Controller {
 		}
 	}
 
-	public function _display()
+	public function _render()
 	{
 		$this->template
-			->set_global('lang', substr(Config::item('locale.language'), 0, 2))
+			->set_global('lang', substr(Kohana::config('locale.language.0'), 0, 2))
 
 			->set('doctype', page::doctype($this->xhtml))
 			->set('content_type', (($this->xhtml) ? 'application/xhtml+xml' : 'text/html'))
@@ -68,6 +68,9 @@ class Frontend_Controller extends Template_Controller {
 			->set('navigation', View::factory('navigation'));
 			// ->set('footer', $this->footer);
 
+		if ( ! IN_PRODUCTION)
+			$this->template->profiler = new Profiler;
+
 		// Convert xhtml to html
 		if ( ! $this->xhtml)
 		{
@@ -75,7 +78,7 @@ class Frontend_Controller extends Template_Controller {
 		}
 
 		// Display the loaded template
-		parent::_display();
+		parent::_render();
 
 	}
 
