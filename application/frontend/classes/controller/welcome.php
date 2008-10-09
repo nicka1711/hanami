@@ -1,10 +1,10 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 /**
  * @package Core
  *
  * Default Kohana controller.
  */
-class Welcome_Controller extends Controller {
+class Controller_Welcome extends Controller {
 
 	public function index()
 	{

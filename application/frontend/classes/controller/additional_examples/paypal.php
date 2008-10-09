@@ -1,6 +1,6 @@
 <?php
 
-class Paypal_Controller extends Controller {
+class Controller_Paypal extends Controller {
 
 	// This will demo a simple paypal transaction. It really only comes down to two steps.
 	function __construct()

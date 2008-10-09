@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 /**
  * Create, Read, Update and Delete (CRUD) are the four basic functions which
  * most modules provide.

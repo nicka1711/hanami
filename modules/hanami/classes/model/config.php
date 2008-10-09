@@ -1,6 +1,6 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 
-class Config_Model extends Model {
+class Model_Config extends Model {
 	public function get()
 		{
 			$sql = "SELECT

@@ -1,6 +1,6 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 
-class Auth_Controller extends Backend_Controller {
+class Controller_Auth extends Controller_Backend {
 	
 	private $auth;
 
@@ -41,7 +41,7 @@ class Auth_Controller extends Backend_Controller {
 
 		if ($_POST->validate())
 		{
-			$user = new User_Model($_POST['username']);
+			$user = new Model_User($_POST['username']);
 				//echo Kohana::debug($this->auth->login($user, $_POST['password']));
 			if ($this->auth->login($user, $_POST['password']))
 			{

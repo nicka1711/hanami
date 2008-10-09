@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 /**
  * Contains examples of various Kohana library examples. You can access these
  * samples in your own installation of Kohana by going to ROOT_URL/examples.
@@ -10,7 +10,7 @@
  * @copyright  (c) 2007-2008 Kohana Team
  * @license    http://kohanaphp.com/license.html
  */
-class Examples_Controller extends Controller {
+class Controller_Examples extends Controller {
 
 	/**
 	 * Displays a list of available examples

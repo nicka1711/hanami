@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 /**
  * Blog administration module demo controller. This controller should NOT be used in production.
  * It is for demonstration purposes only!
@@ -10,7 +10,7 @@
  * @copyright
  * @license
  */
-class Blog_Admin_Demo_Controller extends Controller {
+class Controller_Blog_Admin_Demo extends Controller {
 
 	// Do not allow to run in production
 	const ALLOW_PRODUCTION = FALSE;
@@ -36,7 +36,7 @@ class Blog_Admin_Demo_Controller extends Controller {
 		empty($year)  and $year  = date('Y'); // Current year
 
 
-		$articles = new Blog_Article_Model;
+		$articles = new Model_Blog_Article;
 		$articles->orderby('posted', 'DESC');
 
 		$list = array();
@@ -53,7 +53,7 @@ class Blog_Admin_Demo_Controller extends Controller {
 
 	public function article($id = NULL)
 	{
-		$article = new Blog_Article_Model($id);
+		$article = new Model_Blog_Article($id);
 
 		$form = new Forge(NULL, 'Write a blog article');
 
@@ -86,7 +86,7 @@ class Blog_Admin_Demo_Controller extends Controller {
 		echo $form->render();
 		/*($id === 'new') and $id = FALSE;
 
-		$article = new Blog_Article_Model($id);
+		$article = new Model_Blog_Article($id);
 
 		$_POST = Validation::factory($_POST)
 			->pre_filter('trim', TRUE)

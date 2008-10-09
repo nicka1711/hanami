@@ -1,6 +1,6 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 
-class Blog_Controller extends Backend_Controller {
+class Controller_Blog extends Controller_Backend {
 
 
 

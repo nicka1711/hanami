@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 
 class Backend_Controller extends Frontend_Controller /*implements CRUD_Controller*/ {
 
