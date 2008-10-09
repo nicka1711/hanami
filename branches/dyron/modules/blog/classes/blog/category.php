@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 /**
  * Blog category library. Handles user entries and thier comments
  *

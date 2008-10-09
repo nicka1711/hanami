@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 /**
  * Blog library. Handles user entries and thier comments
  *
@@ -55,7 +55,7 @@ class Blog_Comment {
 
 		if ($data->validate())
 		{
-			$comment = new Blog_Comment_Model;
+			$comment = new Model_Blog_Comment;
 			
 			$comment->blog_article_id = $id;
 			
@@ -82,7 +82,7 @@ class Blog_Comment {
 
 		if ($data->validate())
 		{
-			$comment = new Blog_Comment_Model;
+			$comment = new Model_Blog_Comment;
 			$comment->blog_article_id = $reference;
 			
 			foreach($data->as_array() as $key => $value)

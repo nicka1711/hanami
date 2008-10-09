@@ -1,6 +1,6 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 
-class Dashboard_Controller extends Backend_Controller {
+class Controller_Dashboard extends Controller_Backend {
 
 	public function index()
 	{

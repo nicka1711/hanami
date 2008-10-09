@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 /**
  * Blog module demo controller. This controller should NOT be used in production.
  * It is for demonstration purposes only!
@@ -10,7 +10,7 @@
  * @copyright
  * @license
  */
-class Blog_Demo_Controller extends Controller {
+class Controller_Blog_Demo extends Controller {
 
 	// Do not allow to run in production
 	const ALLOW_PRODUCTION = FALSE;
@@ -32,7 +32,7 @@ class Blog_Demo_Controller extends Controller {
 		empty($year)  and $year  = date('Y'); // Current year
 
 
-		$articles = new Blog_Article_Model;
+		$articles = new Model_Blog_Article;
 		$articles->orderby('posted', 'DESC');
 
 		$list = array();

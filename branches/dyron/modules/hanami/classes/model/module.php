@@ -1,10 +1,12 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 
-class Module_Model extends ORM {
+define('ALL', -1);
+
+class Model_Module extends Model {
 
 	static public function factory($id = FALSE)
 	{
-		return new Module_Model($id);
+		return new Model_Module($id);
 	}
 
 	public function __construct($id = FALSE)
@@ -12,4 +14,10 @@ class Module_Model extends ORM {
 		parent::__construct($id);
 	}
 
-} // End Module_Model
+    public function find($id = ALL)
+    {
+        
+        return $this->db->query("SELECT name FROM modules");
+    }
+
+} // End Model_Module

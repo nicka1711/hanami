@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 
 class Frontend_Controller extends Template_Controller {
 

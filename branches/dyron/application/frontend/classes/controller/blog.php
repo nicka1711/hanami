@@ -1,6 +1,6 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 
-class Blog_Controller extends Frontend_Controller {
+class Controller_Blog extends Controller_Frontend {
 
 	private $errors = array();
 
@@ -18,7 +18,7 @@ class Blog_Controller extends Frontend_Controller {
 
 	public function archive($year = NULL, $month = NULL)
 	{
-		$articles = new Blog_Article_Model;
+		$articles = new Model_Blog_Article;
 
 		($year  == NULL) or $articles->where('YEAR(posted) = '.(int) $year);
 		($month == NULL) or $articles->where('MONTH(posted) = '.(int) $month);

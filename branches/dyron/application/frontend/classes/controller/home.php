@@ -1,6 +1,6 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 
-class Home_Controller extends Frontend_Controller {
+class Controller_Home extends Controller_Frontend {
 	
 	function __construct()
 	{

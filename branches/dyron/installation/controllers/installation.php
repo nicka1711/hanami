@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 /**
  * @package Installation
  *
@@ -6,7 +6,7 @@
  */
 
 
-class Installation_Controller extends Template_Controller {
+class Controller_Installation extends Controller_Template {
 
 	// Template view name
 	public $template = 'install';
