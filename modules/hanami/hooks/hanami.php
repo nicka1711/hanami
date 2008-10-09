@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 /**
  * Hanami base file.
  * 
@@ -29,7 +29,7 @@ class Hanami
 		}
 
 		$installed_mods = array();
-		foreach(Module_Model::factory()->find_all() as $module)
+		foreach(Model_Module::factory()->find(ALL) as $module)
 		{
 			/**
 			 * @todo Validate the modules via /config/[module].php or something
