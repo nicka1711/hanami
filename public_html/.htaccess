@@ -18,8 +18,8 @@ RewriteCond %{REQUEST_URI} !^/admin.php/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule .* admin.php/$0 [PT,L,QSA]
 
-# Protect application and system files from being viewed
-RewriteRule ^(application|modules|system) - [F,L]
+# Protect application files from being viewed
+RewriteRule ^application - [F,L]
 
 # Do not enable rewriting for files that exist
 RewriteCond %{REQUEST_FILENAME} !-f
