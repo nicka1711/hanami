@@ -25,9 +25,9 @@ class Hanami
 			unset($required[0]);
 		}
 
-		$modules   = Module_Model::factory();
+		$modules   = ORM::factory('module');
 		$installed = array();
-		foreach($modules->find_all() as $module)
+		foreach($modules->find(ALL) as $module)
 		{
 			/**
 			  * @todo More module verifying
