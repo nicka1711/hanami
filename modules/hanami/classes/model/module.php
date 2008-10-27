@@ -17,7 +17,7 @@ class Model_Module extends Model {
     public function find($id = ALL)
     {
         
-        return $this->db->query("SELECT name FROM modules");
+        return $this->db->query("SELECT `name` FROM `modules`");
     }
 
 } // End Model_Module
