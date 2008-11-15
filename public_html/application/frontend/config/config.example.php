@@ -149,14 +149,15 @@ $config['enable_hooks'] = TRUE;
 $config['modules'] = array
 (
 	DOCROOT.'installation', // Install module
-	MODPATH.'hanami',    // Hanami Core
 
 	MODPATH.'archive',   // Archive utility
 	MODPATH.'auth',      // Authentication
-	// MODPATH.'kodoc',     // Self-generating documentation
+	MODPATH.'documentation',     // Documentation
 	// MODPATH.'media',     // Media caching and compression
 	// MODPATH.'gmaps',     // Google Maps integration
 	// MODPATH.'payment',   // Online payments
-	// MODPATH.'unit_test', // Unit testing
+	MODPATH.'unit_test', // Unit testing
 	// MODPATH.'object_db', // New OOP Database library (testing only!)
+
+	MODPATH.'hanami',    // Hanami Core
 );

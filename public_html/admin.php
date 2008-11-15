@@ -92,7 +92,7 @@ unset($kohana_application, $kohana_modules, $kohana_system);
 if ( ! IN_PRODUCTION)
 {
 	// Check APPPATH
-	if ( ! (is_dir(APPPATH) AND file_exists(APPPATH.'config/config'.EXT)))
+	if ( ! (is_dir(APPPATH) AND is_file(APPPATH.'config/config'.EXT)))
 	{
 		die
 		(
@@ -105,7 +105,7 @@ if ( ! IN_PRODUCTION)
 	}
 
 	// Check SYSPATH
-	if ( ! (is_dir(SYSPATH) AND file_exists(SYSPATH.'core/Bootstrap'.EXT)))
+	if ( ! (is_dir(SYSPATH) AND is_file(SYSPATH.'bootstrap'.EXT)))
 	{
 		die
 		(
@@ -118,5 +118,5 @@ if ( ! IN_PRODUCTION)
 	}
 }
 
-// Initialize.
-require SYSPATH.'core/Bootstrap'.EXT;
+// Initialize Kohana
+require SYSPATH.'bootstrap'.EXT;
