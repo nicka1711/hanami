@@ -8,7 +8,7 @@ While one of Kohanas and our principle is "convention over configuration" this l
 = Accepted Conventions =
   * Follow the [http://trac.kohanaphp.com/wiki/CodingStyle Kohana CodingStyle]
   * Convention over Configuration
-  * Using the latest Kohana [http://svn.kohanaphp.com/trunk/system system] and [http://svn.kohanaphp.com/trunk/modules modules]
+  * Using the [http://svn.kohanaphp.com/tags/2.2.1 latest stable Kohana release]
   * Using [http://www.w3.org/TR/html401/ HTML 4.01 strict]
 
 = Conventions in discussion =
