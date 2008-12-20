@@ -1,60 +1,7 @@
-<?php
+<?php defined('SYSPATH') or die('No direct access allowed.');
 /**
  * @package  Core
  *
- * Sets default routing, allowing up to 3 segments to be used.
- *
- *     $config['default'] = array
- *     (
- *         // Default routing
- *         'route' => array
- *         (
- *             'uri' => :controller/:method/:id',
- *         ),
- *         
- *         // Defaults for route keys
- *         'controller' => 'welcome',
- *         'method' => 'index',
- *     );
- *
- * To define a specific pattern for a key, you can use the special "regex" key:
- *
- *     $config['default'] = array
- *     (
- *         // Limit the controller to letters and underscores
- *         'route' => array
- *         (
- *             'regex' => array('controller' => '[a-z_]+')
- *         ),
- *     );
- *
- * To add a prefix to any key, you can use the special "prefix" key:
- *
- *     $config['admin'] = array
- *     (
- *         'route' => array
- *         (
- *             'prefix' => array('controller' => 'admin_'),
- *         ),
- *     );
- *
+ * Sets the default route to "welcome"
  */
-$config['admin'] = array
-(
-	'route' => array
-	(
-		// Default routing
-		'uri' => ':controller/:method/:id',
-	),
-
-	// Defaults for route keys
-	'controller' => 'dashboard',
-	'method' => 'index',
-
-
-
-/*
-	'login'    => 'auth/login',
-	'logout'   => 'auth/logout',
-        */
-);
+$config['_default'] = 'dashboard';

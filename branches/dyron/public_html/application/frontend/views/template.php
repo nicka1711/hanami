@@ -36,8 +36,13 @@
 <?php echo $content ?>
 
       </div>
-      <p class="copyright hanami">Powerd by HanamiCMS v{hanami_version}<br/>Copyright &copy;2008 Hanami Team</p>
-      <p class="copyright kohana">Rendered in {execution_time} seconds, using {memory_usage} of memory<br/>Copyright &copy;2007-2008 Kohana Team</p>
-    </div>
-  </body>
+
+    <p class="copyright hanami">
+        Powerd by HanamiCMS v{hanami_version}<br/>
+        Copyright &copy;<?php echo date('Y'); ?> Hanami Team</p>
+    <p class="copyright kohana">
+        Rendered in {execution_time} seconds, using {memory_usage} of memory<br/>
+        Copyright &copy;2007-<?php echo date('Y'); ?> Kohana Team</p>
+</div>
+</body>
 </html>

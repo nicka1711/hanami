@@ -6,7 +6,7 @@
  */
 
 
-class Controller_Installation extends Controller_Template {
+class Installation_Controller extends Template_Controller {
 
 	// Template view name
 	public $template = 'install';
@@ -50,7 +50,7 @@ private $steps = array
 
 		$this->application = new Installation;
 
-		$this->page        = new Page;
+		$this->page        = new page;
 		$this->page->title[] = Kohana::lang('install.installation');
 	}
 
@@ -104,9 +104,10 @@ private $steps = array
 	 * 
 	 */
 	public function welcome()
-	{
+    {
+        if (isset($_POST['lang'])) {echo Kohana::debug($_POST['lang']);die();}
 		// Redirect to the next step "license", if a language is choosen
-		(isset($_POST['lang'][0])) and url::redirect('installation/license');
+		(isset($_POST['lang'])) and url::redirect('installation/license');
 
 		// Filling the template
 		$this->page->title[] = Kohana::lang('install.welcome');
@@ -142,8 +143,8 @@ private $steps = array
 			//->set('content_type', (($this->xhtml) ? 'application/xhtml+xml' : 'text/html'))
 			//->set('charset', 'utf-8')
 			//->set('page_id', $this->page_id)
-			->set('page_title', $this->page->title());
-			//->set('title', !empty($this->title) ? $this->title : end($this->page_title))
+			->set('page_title', page::title($this->page->title, 'ltr'))
+			->set('title', !empty($this->title) ? $this->title : end($this->page->title));
 			//->set('site_name', $this->config['site_name'])
 			//	->set('author', $this->config['author'])
 			//	->set('description', $this->config['site_description'])
