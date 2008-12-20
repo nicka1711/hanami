@@ -10,10 +10,10 @@
  * @license    
  */
 
-define('HANAMI_VERSION',  '0.1');
+define('HANAMI_VERSION',  '0.2');
 define('HANAMI_CODENAME', 'Paarhufer');
 
-class Hanami
+class Hanami_Hook
 {
 	public function __construct()
 	{
@@ -22,14 +22,14 @@ class Hanami
 
 		$modules = Kohana::config('core.modules');
 
-		if (true or !is_dir('installation'))
+		if ( ! is_dir(DOCROOT.'installation'))
 		{
 			// Delete install app from Config::$include_paths
 			unset($modules[0]);
 		}
 
 		$installed_mods = array();
-		foreach(Model_Module::factory()->find(ALL) as $module)
+		foreach(Module_Model::factory()->find(ALL) as $module)
 		{
 			/**
 			 * @todo Validate the modules via /config/[module].php or something
@@ -48,7 +48,8 @@ class Hanami
 
 	public function install()
 	{
-		IN_PRODUCTION and is_dir('installation') and (strpos(url::current(),'installation') === FALSE) and url::redirect('installation');
+		if (IN_PRODUCTION and is_dir(DOCROOT.'installation') and strpos(url::current(),'installation') === FALSE)
+		    url::redirect('installation');
 	}
 
 	public function render()
@@ -73,5 +74,5 @@ class Hanami
 	}
 }
 
-new Hanami;
+new Hanami_Hook;
 
