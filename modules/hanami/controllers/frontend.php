@@ -1,6 +1,6 @@
 <?php 
 
-class Controller_Frontend extends Controller_Template {
+class Frontend_Controller extends Template_Controller {
 
 	public $files = array
 	(
@@ -40,6 +40,8 @@ class Controller_Frontend extends Controller_Template {
 		{
 			!Auth::factory()->logged_in() and (url::current() !== 'login') and url::redirect('/login');
 		}
+
+		$this->page->title[] = sprintf('Hanami CMS v%s', HANAMI_VERSION);//Kohana::lang('common.home_page');
 	}
 
 	public function _render()
@@ -52,8 +54,8 @@ class Controller_Frontend extends Controller_Template {
 			->set('charset', 'utf-8')
 
 			->set('page_id', $this->page_id)
-			->set('page_title', page::title($this->page_title))
-			->set('title', !empty($this->title) ? $this->title : end($this->page_title))
+			->set('page_title', page::title($this->page->title))
+			->set('title', !empty($this->title) ? $this->title : end($this->page->title))
 			//->set('site_name', $this->config['site_name'])
 			//	->set('author', $this->config['author'])
 			//	->set('description', $this->config['site_description'])
@@ -75,7 +77,7 @@ class Controller_Frontend extends Controller_Template {
 		}
 			
 		if ( ! IN_PRODUCTION)
-			//$this->template->profiler = new Profiler;
+			$this->template->profiler = new Profiler;
 
 		// Convert xhtml to html
 		if ( ! $this->xhtml)

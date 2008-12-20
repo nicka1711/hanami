@@ -9,7 +9,7 @@
  * @copyright  (c) 2008 Hanami Team
  * @license    
  */
-class page {
+class page_Core {
 
 	/**
 	 * Return a HTML 4.01 strict or XHTML 1.0 strict DOCTYPE

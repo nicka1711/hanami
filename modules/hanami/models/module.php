@@ -2,11 +2,11 @@
 
 define('ALL', -1);
 
-class Model_Module extends Model {
+class Module_Model extends Model {
 
 	static public function factory($id = FALSE)
 	{
-		return new Model_Module($id);
+		return new Module_Model($id);
 	}
 
 	public function __construct($id = FALSE)

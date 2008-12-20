@@ -1,7 +1,7 @@
-<?php 
-foreach($topics as $topic):
+<?php
+foreach($categories as $category):
 
-var_dump($topic->name);
+echo $category->name;
 
 endforeach;
 ?>
