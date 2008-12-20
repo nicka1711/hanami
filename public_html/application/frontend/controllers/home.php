@@ -1,6 +1,15 @@
 <?php 
-
-class Controller_Home extends Controller_Frontend {
+/**
+ * Main Frontend Controller
+ *
+ * $Id$
+ *
+ * @package    Frontend
+ * @author     Hanami Team
+ * @copyright  (c) 2008 Hanami Team
+ * @license    
+ */
+class Home_Controller extends Frontend_Controller {
 	
 	function __construct()
 	{
@@ -26,4 +35,5 @@ class Controller_Home extends Controller_Frontend {
 		$this->template->content = View::factory('home')
 			->set('calendar', $calendar->render('calendar'));
 	}
-}
+
+} // End Home

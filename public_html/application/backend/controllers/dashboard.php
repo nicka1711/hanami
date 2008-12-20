@@ -1,6 +1,6 @@
 <?php 
 
-class Controller_Dashboard extends Controller_Backend {
+class Dashboard_Controller extends Backend_Controller {
 
 	public function index()
 	{
