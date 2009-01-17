@@ -1,6 +1,6 @@
 <?php 
 
-class Controller_Blog extends Controller_Frontend {
+class Blog_Controller extends Frontend_Controller {
 
 	private $errors = array();
 
@@ -18,7 +18,7 @@ class Controller_Blog extends Controller_Frontend {
 
 	public function archive($year = NULL, $month = NULL)
 	{
-		$articles = new Model_Blog_Article;
+		$articles = new Blog_Article_Model;
 
 		($year  == NULL) or $articles->where('YEAR(posted) = '.(int) $year);
 		($month == NULL) or $articles->where('MONTH(posted) = '.(int) $month);
