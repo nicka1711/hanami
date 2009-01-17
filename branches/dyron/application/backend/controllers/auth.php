@@ -1,6 +1,6 @@
 <?php 
 
-class Controller_Auth extends Controller_Backend {
+class Auth_Controller extends Backend_Controller {
 	
 	private $auth;
 
@@ -33,7 +33,14 @@ class Controller_Auth extends Controller_Backend {
 
 	public function login()
 	{
-		$_POST = Validation::factory($_POST)
+		$fields = array(
+			'username' => '',
+			'password' => ''
+		);
+
+		ORM::factory('user')->login($_POST, '/dashboard');
+
+		/*$_POST = Validation::factory($_POST)
 			->pre_filter('trim', TRUE)
 			->add_rules('username', 'required', 'length[2,32]')
 			->add_rules('password', 'required', 'length[4,64]');
@@ -58,14 +65,14 @@ class Controller_Auth extends Controller_Backend {
 			{
 				$_POST->add_error('password', 'invalid_login');
 			}
-		}
+		}*/
 
 		$this->page->title[] = Kohana::lang('auth.login');
 
 		// Load content
 		$this->template->content = View::factory('auth/login')
-			->set('username', isset($_POST['username']) ? $_POST['username'] : '')
-			->set('errors', $_POST->errors('form'));
+			->set('username', $this->input->post('username'))
+			->set('errors', $_POST->errors('form.login'));
 	}
 
 	/**

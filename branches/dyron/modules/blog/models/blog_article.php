@@ -1,6 +1,6 @@
 <?php 
 
-class Model_Blog_Article extends ORM {
+class Blog_Article_Model extends ORM {
 
 	// Relationships
 	protected $has_many = array('blog_comments');
