@@ -10,7 +10,7 @@
  * @copyright
  * @license
  */
-class Controller_Blog_Demo extends Controller {
+class Blog_Demo_Controller extends Controller {
 
 	// Do not allow to run in production
 	const ALLOW_PRODUCTION = FALSE;

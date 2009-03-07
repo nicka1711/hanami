@@ -77,13 +77,13 @@ class Blog_Controller extends Frontend_Controller {
 			->set('comments_count', $total_comments)
 			->set('comments', View::factory('blog/comment/overview')
 				->set('comments', ((bool) $total_comments)
-					? View::factory('comments/list')
+					? View::factory('blog/comment/list')
 						->set('comments', $comments) 
 					: Kohana::lang('blog.no_comments'))
 				->set('write', ((bool) $article->allow_comments) 
-					? View::factory('/blog/comment/form')
+					? View::factory('blog/comment/form')
 						->set('comment', (object) $fields)
-						->set('errors', $this->errors['comment'])
+						->set('errors', $this->errors)
 					: Kohana::lang('comments.no_comments_allowed')));
 	}
 
