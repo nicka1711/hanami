@@ -21,8 +21,10 @@ class Home_Controller extends Frontend_Controller {
 
 	function index()
 	{
-		empty($_GET['month']) and $_GET['month'] = date('n'); // Current month
-		empty($_GET['year'])  and $_GET['year']  = date('Y'); // Current year
+		if (empty ($_GET['month']))
+			$_GET['month'] = date('n'); // Current month
+		if (empty($_GET['year']))
+			$_GET['year']  = date('Y'); // Current year
 
 		Calendar::$start_monday = TRUE;
 

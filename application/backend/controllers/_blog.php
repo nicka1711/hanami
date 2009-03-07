@@ -1,6 +1,6 @@
 <?php 
 
-class Controller_Blog extends Controller_Backend {
+class Blog_Controller extends Backend_Controller {
 
 
 

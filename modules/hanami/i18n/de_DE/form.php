@@ -15,20 +15,20 @@ $lang = array
 	'number' => array
     (
         'required' => 'The number cannot be blank.',
-        'numeric' => 'Only numbers are allowed.',
-        'length' => 'The number must be between three and five numerals.',
-        'default' => 'Invalid Input.',
+        'numeric'  => 'Only numbers are allowed.',
+        'length'   => 'The number must be between three and five numerals.',
+        'default'  => 'Invalid Input.',
     ),
 	'code' => array
     (
         'numeric' => 'Only numbers are allowed.',
-        'length' => 'The code must be exactly three numerals.',
+        'length'  => 'The code must be exactly three numerals.',
         'default' => 'Invalid Input.',
     ),
 	'password' => array
     (
-        'required' => 'You must supply a password.',
+        'required'  => 'Bitte gib ein Passwort an.',
         'pwd_check' => 'The password is not correct.',
-        'default' => 'Invalid Input.',
+        'default'   => 'Invalid Input.',
     ),
 );

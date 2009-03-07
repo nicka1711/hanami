@@ -1,6 +1,6 @@
 <?php 
 
-class Model_Blog_Comment extends ORM {
+class Blog_Comment_Model extends ORM {
 
 	protected $belongs_to = array
 	(

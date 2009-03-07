@@ -26,7 +26,7 @@
 
         <!-- @todo replace hard-coded admin link -->
         <ul>
-			<li><a href="http://admin.<?php echo Kohana::config('core.site_domain')?>"><?php echo Kohana::lang('hanami.administration') ?></a></li>
+			<li><a href="http://admin.<?php echo $_SERVER['HTTP_HOST']?>"><?php echo Kohana::lang('hanami.administration') ?></a></li>
 		</ul>
       </div>
 

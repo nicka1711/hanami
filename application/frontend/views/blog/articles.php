@@ -9,10 +9,6 @@
 
 ?>
 
-<?php
 
-	echo $pagination
-
-?>
-
+<?php echo $pagination; ?>
 </div>
