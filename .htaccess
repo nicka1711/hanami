@@ -1,4 +1,4 @@
-Options +FollowSymlinks
+Options +FollowSymlinks -Indexes
 
 # Turn on URL rewriting
 RewriteEngine On
@@ -9,21 +9,19 @@ RewriteEngine On
 RewriteBase /
 
 # Rewrite to no www
-#RewriteCond %{HTTP_HOST} ^www.(.+) [NC]
-#RewriteRule ^(.*)$ http://%1/$1 [L,R=301,QSA]
+RewriteCond %{HTTP_HOST} ^www\.(.+) [NC]
+RewriteRule ^(.*)$ http://%1/$1 [L,R=301,QSA]
  
 # Rewrite admin. to admin.php/URL
-RewriteCond %{HTTP_HOST} ^admin.(.+) [NC]
-RewriteCond %{REQUEST_URI} !^/admin.php/
+RewriteCond %{HTTP_HOST} ^admin\.(.+) [NC]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule .* admin.php/$0 [PT,L,QSA]
 
 # Protect application files from being viewed
-RewriteRule ^application - [F,L]
+RewriteRule ^application|modules|system - [F,L]
 
 # Do not enable rewriting for files that exist
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 
 # Rewrite to index.php/URL
 RewriteRule .* index.php/$0 [PT,L,QSA]
