@@ -1,7 +1,7 @@
 <ul>
 <?php
 
-	foreach($list as $year => $month_list):
+	foreach($list as $year => $months):
 
 ?>
   <li>
@@ -9,7 +9,7 @@
     <ul>
 <?php
 
-		foreach($month_list as $month => $articles):
+		foreach($months as $month => $articles):
 
 ?>
       <li>
@@ -18,7 +18,7 @@
 <?php
 
 			foreach($articles as $article):
-				$url = url::site(sprintf('blog/%s/%s', date('Y/m/d', strtotime($article->posted)), $article->url));
+				$url = url::site(sprintf('blog_demo/article/%d', (int) $article->id));
 
 ?>
           <li><a href="<?php echo $url ?>"><?php echo $article->title; ?></a></li>
@@ -42,3 +42,5 @@
 
 ?>
 </ul>
+
+<p><?php echo html::anchor('blog_admin_demo/article', 'Create a new article') ?>, <?php echo html::anchor('blog_demo/articles', 'list all articles') ?> or <?php echo html::anchor('blog_demo/archive', 'view the archive') ?>.</p>

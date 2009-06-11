@@ -28,11 +28,12 @@ class Blog_Demo_Controller extends Controller {
 
 	public function archive($year = NULL, $month = NULL)
 	{
-		/*empty($month) and $month = date('n'); // Current month
-		empty($year)  and $year  = date('Y'); // Current year
+		if ($month === NULL)
+			$month = date('n'); // Current month
+		if ($year === NULL)
+			$year  = date('Y'); // Current year
 
-
-		$articles = new Model_Blog_Article;
+		$articles = new Blog_Article_Model;
 		$articles->orderby('posted', 'DESC');
 
 		$list = array();
@@ -41,9 +42,8 @@ class Blog_Demo_Controller extends Controller {
 			$list[date('Y', strtotime($article->posted))][date('F', strtotime($article->posted))][] = $article;
 		}
 
-		$this->template->content = View::factory('blog/archive')
-			->set('list', $list);*/
-
+		echo View::factory('blog/archive')
+			->set('list', $list);
 	}
 
 	public function article($id = NULL)
@@ -76,26 +76,20 @@ class Blog_Demo_Controller extends Controller {
 		$count = $article->count_all();
 
 		// Paging option
-		$page  = $this->input->get('page');
-		$limit = $this->input->get('per_page');
-
-		// Default options
-		($page  > 0) or $page  = 1;
-		($limit > 0) or $limit = (int) Kohana::config('blog.article_per_page');
+		$page  = $this->input->get('page', 1);
+		$limit = $this->input->get('per_page', (int) Kohana::config('blog.article_per_page'));
 
 		// Calculate the offset
 		$offset = ($page === 1) ? 0 : (int) (($page - 1) * $limit);
 
 		echo View::factory('blog/articles')
-			->set('articles', $article
-				->orderby('posted', 'DESC')
-				->find_all($limit, $offset))
-			->set('pagination', ($count > $limit)
-				? Pagination::factory(array(
+			->set('articles', $article->orderby('posted', 'DESC')->find_all($limit, $offset))
+			->set('pagination', Pagination::factory(array(
 					'query_string'   => 'page',
 					'total_items'    => $count,
-					'items_per_page' => $limit))
-				: '');
+					'items_per_page' => $limit,
+					'auto_hide'      => true
+				)));
 		
 	}
 }
