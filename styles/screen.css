@@ -14,21 +14,19 @@ body {
 	/*text-align: center; */
 }
 
-div#page { 
+div#page {
 	background: #ffffff;
 	margin: 0 auto;
-	padding: 0 2em;
+	padding: 2em;
 	width: 700px;
 }
 
 
 .installation #page {
-	border-radius: 1em;
-	-moz-border-radius: 1em;
 }
 
 
-div, h1, h2, a, p, code, ul { font-family: inherit; color: inherit; text-align: baseline; text-decoration: none; }
+div, h1, h2, a, p, code, ul { font-family: inherit; color: inherit; vertical-align: baseline; text-decoration: none; }
 h1 { 
 	padding:  0 0; 
 
@@ -129,3 +127,45 @@ table#calendar tfoot .next {
 table#calendar .prev-next {
 	color: #bfbfbf;
 }
+
+
+
+
+
+
+div#blog .article {
+	margin: 0 0 2em;
+}
+
+div#blog .article .content {
+	margin: 5em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.copyright {
+	font-size: .8em;
+	color: #c0c0c0;
+	padding: .5em 0 1em;
+}
+
+.copyright.hanami {
+	float: right;
+	width: 50%;
+}
+
+
+
