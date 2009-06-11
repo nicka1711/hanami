@@ -11,7 +11,7 @@
 
   <p><?php echo html::anchor(sprintf('/blog_admin_demo/article/%d', $article->id), 'Edit'); ?></p>
 
-  <p><em><?php echo date('d.m.Y H:i', strtotime($article->posted)); ?></em> - <strong><?php echo $article->user->name; //author ?></strong></p>
+  <p><em><?php echo date('d.m.Y H:i', strtotime($article->posted)); ?></em> - <strong><?php echo $article->user; //author ?></strong></p>
 
   <p><?php echo html::anchor($url.'#comments', sprintf('Comments (%d)', $comments_count)); ?></p>
 
