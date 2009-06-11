@@ -71,15 +71,21 @@ define('EXT', '.php');
 //
 // DO NOT EDIT BELOW THIS LINE, UNLESS YOU FULLY UNDERSTAND THE IMPLICATIONS.
 // ----------------------------------------------------------------------------
-// $Id$
+// $Id: index.php 3915 2009-01-20 20:52:20Z zombor $
 //
 
+$kohana_pathinfo = pathinfo(__FILE__);
 // Define the front controller name and docroot
-define('DOCROOT', getcwd().DIRECTORY_SEPARATOR);
-define('KOHANA',  basename(__FILE__));
+define('DOCROOT', $kohana_pathinfo['dirname'].DIRECTORY_SEPARATOR);
+define('KOHANA',  $kohana_pathinfo['basename']);
 
 // If the front controller is a symlink, change to the real docroot
 is_link(KOHANA) and chdir(dirname(realpath(__FILE__)));
+
+// If kohana folders are relative paths, make them absolute.
+$kohana_application = file_exists($kohana_application) ? $kohana_application : DOCROOT.$kohana_application;
+$kohana_modules = file_exists($kohana_modules) ? $kohana_modules : DOCROOT.$kohana_modules;
+$kohana_system = file_exists($kohana_system) ? $kohana_system : DOCROOT.$kohana_system;
 
 // Define application and system paths
 define('APPPATH', str_replace('\\', '/', realpath($kohana_application)).'/');
@@ -89,34 +95,13 @@ define('SYSPATH', str_replace('\\', '/', realpath($kohana_system)).'/');
 // Clean up
 unset($kohana_application, $kohana_modules, $kohana_system);
 
-if ( ! IN_PRODUCTION)
+if (file_exists(DOCROOT.'install'.EXT))
 {
-	// Check APPPATH
-	if ( ! (is_dir(APPPATH) AND is_file(APPPATH.'config/config'.EXT)))
-	{
-		die
-		(
-			'<div style="width:80%;margin:50px auto;text-align:center;">'.
-				'<h3>Application Directory Not Found</h3>'.
-				'<p>The <code>$kohana_application</code> directory does not exist.</p>'.
-				'<p>Set <code>$kohana_application</code> in <tt>'.KOHANA.'</tt> to a valid directory and refresh the page.</p>'.
-			'</div>'
-		);
-	}
-
-	// Check SYSPATH
-	if ( ! (is_dir(SYSPATH) AND is_file(SYSPATH.'core/Bootstrap'.EXT)))
-	{
-		die
-		(
-			'<div style="width:80%;margin:50px auto;text-align:center;">'.
-				'<h3>System Directory Not Found</h3>'.
-				'<p>The <code>$kohana_system</code> directory does not exist.</p>'.
-				'<p>Set <code>$kohana_system</code> in <tt>'.KOHANA.'</tt> to a valid directory and refresh the page.</p>'.
-			'</div>'
-		);
-	}
+	// Load the installation tests
+	include DOCROOT.'install'.EXT;
 }
-
-// Initialize.
-require SYSPATH.'core/Bootstrap'.EXT;
+else
+{
+	// Initialize Kohana
+	require SYSPATH.'core/Bootstrap'.EXT;
+}
