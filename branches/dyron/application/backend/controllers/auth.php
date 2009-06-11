@@ -10,6 +10,8 @@ class Auth_Controller extends Backend_Controller {
 	{
 		parent::__construct();
 
+		$this->class = get_class();
+
 		// Load auth library
 		$this->auth = new Auth;
 	}

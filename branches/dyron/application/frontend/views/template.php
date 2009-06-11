@@ -23,19 +23,17 @@
         <h1>Hanami</h1>
 
         <h2><?php echo $title ?></h2>
-
-        <!-- @todo replace hard-coded admin link -->
-        <ul>
-			<li><a href="http://admin.<?php echo $_SERVER['HTTP_HOST']?>"><?php echo Kohana::lang('hanami.administration') ?></a></li>
-		</ul>
       </div>
 
-<?php echo $navigation ?>
+<?php echo $navigation ?><?php //echo __('This is a test string.')?>
+
+      <hr />
 
       <div id="content">
 <?php echo $content ?>
-
       </div>
+
+      <hr />
 
     <p class="copyright hanami">
         Powerd by HanamiCMS v{hanami_version}<br/>

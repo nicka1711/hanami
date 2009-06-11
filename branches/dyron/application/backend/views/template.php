@@ -14,7 +14,7 @@
 
   <body class="admin">
     <div id="page">
-      <h1>Verwaltung</h1>
+      <h1>Administration</h1>
 <?php echo $navigation ?>
 
 <?php echo $content ?>

@@ -1,4 +1,4 @@
-<div class="blog article">
+<div class="blog article" style="border-bottom: 1px solid #000;">
 <?php
 
 	$url = sprintf('/blog/%s/%s', strftime('%Y/%m/%d', strtotime($article->posted)), $article->url);

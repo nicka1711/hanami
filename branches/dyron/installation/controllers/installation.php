@@ -7,10 +7,6 @@
 
 
 class Installation_Controller extends Template_Controller {
-
-	// Template view name
-	public $template = 'install';
-
     protected $page;
 
 	protected $application;
@@ -105,7 +101,7 @@ private $steps = array
 	 */
 	public function welcome()
     {
-        if (isset($_POST['lang'])) {echo Kohana::debug($_POST['lang']);die();}
+        //if (isset($_POST['lang'])) {echo Kohana::debug($_POST['lang']);die();}
 		// Redirect to the next step "license", if a language is choosen
 		(isset($_POST['lang'])) and url::redirect('installation/license');
 
@@ -138,11 +134,12 @@ private $steps = array
 	{
 		$lang = Kohana::config('locale.language');
 		$this->template
-			->set_global('lang', substr($lang[0], 0, 2))
+			->set_global('lang', substr($lang[0], 0, 2));
 			//->set('doctype', View::factory('doctypes/'.(($this->xhtml) ? 'xhtml' : 'html')))
 			//->set('content_type', (($this->xhtml) ? 'application/xhtml+xml' : 'text/html'))
 			//->set('charset', 'utf-8')
 			//->set('page_id', $this->page_id)
+		$this->template
 			->set('page_title', page::title($this->page->title, 'ltr'))
 			->set('title', !empty($this->title) ? $this->title : end($this->page->title));
 			//->set('site_name', $this->config['site_name'])
