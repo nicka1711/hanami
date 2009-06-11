@@ -1,10 +1,7 @@
-<?php 
+<?php defined('SYSPATH') or die('No direct access allowed.');
 /**
  * Blog module configuration. 
- */
-
-/**
- * 
+ * @package  Blog
  */
 $config = array
 (

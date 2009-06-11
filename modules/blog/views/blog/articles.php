@@ -9,7 +9,7 @@
 	foreach($articles as $article): 
 
 ?>
-    <li><?php echo html::anchor(sprintf('/blog_demo/article/%d', $article->id), $article->title) ?></li>
+    <li><?php echo html::anchor(sprintf('/blog/article/%d', $article->id), $article->title) ?></li>
 <?php
 
 	endforeach; 

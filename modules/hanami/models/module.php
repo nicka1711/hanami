@@ -1,10 +1,8 @@
 <?php 
 
-define('ALL', -1);
+class Module_Model extends ORM {
 
-class Module_Model extends Model {
-
-	static public function factory($id = FALSE)
+	/*static public function factory($id = FALSE)
 	{
 		return new Module_Model($id);
 	}
@@ -18,6 +16,6 @@ class Module_Model extends Model {
     {
         
         return $this->db->query("SELECT `name` FROM `modules`");
-    }
+    }*/
 
 } // End Model_Module
