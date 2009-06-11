@@ -10,25 +10,15 @@
  * @copyright
  * @license
  */
-class Controller_Blog_Admin_Demo extends Controller {
+class Blog_Admin_Demo_Controller extends Controller {
 
 	// Do not allow to run in production
 	const ALLOW_PRODUCTION = FALSE;
 
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
-	
 	public function index()
 	{
 		echo View::factory('blog/install');
 	}
-
-
-
-
 
 	/*public function archive($year = NULL, $month = NULL)
 	{
@@ -53,7 +43,7 @@ class Controller_Blog_Admin_Demo extends Controller {
 
 	public function article($id = NULL)
 	{
-		$article = new Model_Blog_Article($id);
+		$article = new Blog_Article_Model($id);
 
 		$form = new Forge(NULL, 'Write a blog article');
 

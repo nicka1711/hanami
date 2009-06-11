@@ -1,4 +1,4 @@
-<p><em>This module requires Forge and Auth or a similar databased user system.</em><p>
+<p><em>This module requires Auth or a similar databased user system.</em><p>
 
 <p>The following tables must be installed in your database: blog_articles, blog_categories, and blog_comments. If you have not already installed these tables, please run the following query:</p>
 
@@ -32,4 +32,4 @@ CREATE TABLE IF NOT EXISTS `blog_comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 </pre>
 
-<p>After the tables have been installed, <?php echo html::anchor('blog_admin_demo/article', 'create a new article') ?> or <?php echo html::anchor('blog_demo/articles', 'list all articles') ?>.</p>
+<p>After the tables have been installed, <?php echo html::anchor('blog_admin_demo/article', 'create a new article') ?>, <?php echo html::anchor('blog_demo/articles', 'list all articles') ?> or <?php echo html::anchor('blog_demo/archive', 'view the archive') ?>.</p>

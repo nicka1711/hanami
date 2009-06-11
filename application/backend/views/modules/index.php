@@ -1,7 +1,7 @@
 <ul>
   <li>Modules</li>
 </ul>
-
+<?php echo Kohana::debug($modules)?>
 <ul>
 <?php foreach($modules as $module): ?>
   <li>
