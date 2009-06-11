@@ -22,6 +22,8 @@ class Frontend_Controller extends Template_Controller {
 
 	public $login_required = FALSE;
 
+	protected $in_admin = FALSE;
+
 	/**
 	 * Template loading and setup routine.
 	 */
@@ -46,9 +48,8 @@ class Frontend_Controller extends Template_Controller {
 
 	public function _render()
 	{
+		$this->template->set_global('lang', substr(Kohana::config('locale.language.0'), 0, 2));
 		$this->template
-			->set_global('lang', substr(Kohana::config('locale.language.0'), 0, 2))
-
 			->set('doctype', page::doctype($this->xhtml))
 			->set('content_type', (($this->xhtml) ? 'application/xhtml+xml' : 'text/html'))
 			->set('charset', 'utf-8')
@@ -76,8 +77,8 @@ class Frontend_Controller extends Template_Controller {
 			$this->template->set('scripts', html::stylesheet($stylesheet));
 		}
 			
-		if ( ! IN_PRODUCTION)
-			$this->template->profiler = new Profiler;
+		/*if ( ! IN_PRODUCTION)
+			$this->template->profiler = new Profiler;*/
 
 		// Convert xhtml to html
 		if ( ! $this->xhtml)

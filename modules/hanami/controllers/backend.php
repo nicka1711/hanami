@@ -7,6 +7,7 @@ class Backend_Controller extends Frontend_Controller {
 
 	public $login_required = TRUE;
 
+	protected $in_admin = TRUE;
 
 	public function __construct($config = NULL)
 	{
