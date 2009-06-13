@@ -8,6 +8,9 @@
  */
 class Blog_Comment {
 
+	private $type;
+	private $type_id;
+
 	protected $fields = array
 	(
 		'username',
@@ -16,17 +19,23 @@ class Blog_Comment {
 		'message',
 	);
 
+	protected $required_fields = array(
+		'email',
+		'message'
+	);
 	//public $model;
 
 	public $errors;
 
-	public static function factory()// & $model)
+	public static function factory($type, $type_id = NULL)// & $model)
 	{
-		return new Blog_Comment();//$model);
+		return new Blog_Comment($type, $type_id);//$model);
 	}
 
-	public function __construct()// & $model)
+	public function __construct($type, $type_id)// & $model)
 	{
+		$this->type    = (string) $type."_id";
+		$this->type_id = (int) $type_id;
 		//echo Kohana::debug($model);
 
 		//$this->model = $model;
@@ -69,21 +78,25 @@ class Blog_Comment {
 		$this->errors = $data->errors();*/
 	}
 
-	public function save($data, $reference)
+	public function save(array &$data)
 	{
+		if (empty($array))
+			return false;
+
 		$data = Validation::factory($data)
 			->pre_filter('trim')
 
-			->add_rules('username', 'required', 'standard_text')
+			->add_rules('username', 'required')
 			->add_rules('email', 'required', 'email')
 			->add_rules('message', 'required');
 
-		($data['website']) and $data->add_rules('website', 'url');
+		if ($data['website'])
+			$data->add_rules('website', 'url');
 
 		if ($data->validate())
 		{
-			$comment = new Model_Blog_Comment;
-			$comment->blog_article_id = $reference;
+			$comment = new Blog_Comment_Model;
+			$comment->{$this->type} = $this->type_id;
 			
 			foreach($data->as_array() as $key => $value)
 			{
@@ -95,6 +108,8 @@ class Blog_Comment {
 		{
 			$this->errors = $data->errors();
 		}
+
+		return $this;
 	}
 } // End Blog_Comment
 ?>
