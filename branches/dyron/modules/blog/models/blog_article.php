@@ -8,4 +8,3 @@ class Blog_Article_Model extends ORM {
 	protected $belongs_to = array('user', 'blog');
 
 } // End Blog_Article_Model
-?>

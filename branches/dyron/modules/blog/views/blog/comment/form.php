@@ -18,22 +18,22 @@
 
   <div class="<?php if (isset($errors['username'])) echo $errors['username'] ?>">
     <label for="username"><?php echo Kohana::lang('comment.username') ?></label>
-    <input type="text" id="username" name="comment[username]" value="<?php echo html::specialchars($comment->username) ?>"/>
+    <input type="text" id="username" name="comment[username]" value="<?php echo html::specialchars($comment['username']) ?>"/>
   </div>
 
   <div class="<?php if (isset($errors['email'])) echo $errors['email'] ?>">
     <label for="email"><?php echo Kohana::lang('comment.email') ?></label>
-    <input type="text" id="email" name="comment[email]" value="<?php echo html::specialchars($comment->email) ?>"/>
+    <input type="text" id="email" name="comment[email]" value="<?php echo html::specialchars($comment['email']) ?>"/>
   </div>
 
   <div class="<?php if (isset($errors['website'])) echo $errors['website'] ?>">
     <label for="website"><?php echo Kohana::lang('comment.website') ?></label>
-    <input type="text" id="website" name="comment[website]" value="<?php echo html::specialchars($comment->website) ?>"/>
+    <input type="text" id="website" name="comment[website]" value="<?php echo html::specialchars($comment['website']) ?>"/>
   </div>
 
   <div class="<?php if (isset($errors['message'])) echo $errors['message'] ?>">
     <label for="message"><?php echo Kohana::lang('comment.message') ?></label>
-    <textarea id="message" name="comment[message]" rows="10" cols="50"><?php echo html::specialchars($comment->message) ?></textarea>
+    <textarea id="message" name="comment[message]" rows="10" cols="50"><?php echo html::specialchars($comment['message']) ?></textarea>
   </div>
 
   <div>
