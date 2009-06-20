@@ -1,4 +1,4 @@
-<?php 
+<?php defined('SYSPATH') or die('No direct script access.');
 /**
  * @package  Database
  *
@@ -26,7 +26,7 @@
 $config['default'] = array
 (
 	'benchmark'     => TRUE,
-	'persistent'    => TRUE,
+	'persistent'    => FALSE,
 	'connection'    => array
 	(
 		'type'     => 'mysqli',
@@ -35,11 +35,11 @@ $config['default'] = array
 		'host'     => 'localhost',
 		'port'     => FALSE,
 		'socket'   => FALSE,
-		'database' => 'projekte_hanami'
+		'database' => 'projects_hanami'
 	),
 	'character_set' => 'utf8',
 	'table_prefix'  => '',
 	'object'        => TRUE,
-	'cache'         => TRUE,
+	'cache'         => FALSE,
 	'escape'        => TRUE
 );

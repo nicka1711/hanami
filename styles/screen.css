@@ -1,0 +1,171 @@
+@charset "utf-8";
+
+@import url("reset.css") screen;
+
+@import url("screen/base.css") screen;
+
+
+body { 
+	padding: 100px 0 0;
+	font-size: 76%;
+	font-family: Arial, Verdana, sans-serif; 
+	color: #111; 
+	line-height: 1.5; 
+	/*text-align: center; */
+}
+
+div#page {
+	background: #ffffff;
+	margin: 0 auto;
+	padding: 2em;
+	width: 700px;
+}
+
+
+.installation #page {
+}
+
+
+div, h1, h2, a, p, code, ul { font-family: inherit; color: inherit; vertical-align: baseline; text-decoration: none; }
+h1 { 
+	padding:  0 0; 
+
+}
+a { text-decoration: underline; }
+ul { list-style: none; padding: 1em 0; }
+ul li { display: inline; padding-right: 1em; }
+ul li:before { content: '» '; }
+code { color: #381a0c; }
+/*p.intro { padding: 1em 0; font-size: 1.2em; }
+p.copyright { font-size: 0.8em; text-transform: uppercase; color: #44640b; }*/
+
+div#content {
+}
+
+
+
+
+
+
+#navigation li {
+	background: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+table#calendar {
+	border-collapse: collapse;
+	width: 30%;
+}
+
+table#calendar thead a {
+	color: #fff;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+table#calendar caption {
+	text-align: center;
+	/*width: 100%;*/
+}
+
+table#calendar col {
+	width: 14%;
+}
+
+table#calendar col.weekend {
+	background: #f5f5f5;
+}
+
+table#calendar thead {
+	/*background: #093;
+	color: #fff;*/
+}
+
+table#calendar th,
+table#calendar td {
+	text-align: center;
+	padding: 2px .28% 0 0;
+	vertical-align: middle;
+}
+
+table#calendar tbody td:hover {
+	background: #FFC;
+}
+
+table#calendar tbody td.match,
+table#calendar tbody td.match a {
+	color: #093;
+}
+
+table#calendar td.today {
+	background: #efefef;
+    border: 1px solid #bcbcbc;
+    color: #AE343F;
+    font-weight: bold;
+}
+
+table#calendar tfoot .prev {
+	text-align: left;
+}
+
+table#calendar tfoot .next {
+	text-align: right;
+}
+
+
+table#calendar .prev-next {
+	color: #bfbfbf;
+}
+
+
+
+
+
+
+div#blog .article {
+	margin: 0 0 2em;
+}
+
+div#blog .article .content {
+	margin: 5em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.copyright {
+	font-size: .8em;
+	color: #c0c0c0;
+	padding: .5em 0 1em;
+}
+
+.copyright.hanami {
+	float: right;
+	width: 50%;
+}
+
+
+
