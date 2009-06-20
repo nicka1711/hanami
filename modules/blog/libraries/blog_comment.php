@@ -8,9 +8,6 @@
  */
 class Blog_Comment {
 
-	private $type;
-	private $type_id;
-
 	protected $fields = array
 	(
 		'username',
@@ -27,80 +24,92 @@ class Blog_Comment {
 
 	public $errors;
 
-	public static function factory($type, $type_id = NULL)// & $model)
+	public static function factory()// & $model)
 	{
-		return new Blog_Comment($type, $type_id);//$model);
+		return new Blog_Comment();//$model);
 	}
 
-	public function __construct($type, $type_id)// & $model)
+	public function __construct()// & $model)
 	{
-		$this->type    = (string) $type."_id";
-		$this->type_id = (int) $type_id;
-		//echo Kohana::debug($model);
-
-		//$this->model = $model;
-		//return $model->find_related_blog_comments();
 	}
 
-	public function get()
-	{
-		return $this->model->find_related_blog_comments();
-	}
-
-	/*public function overview()
-	{
-		return 'Blog test';
-	}*/
-
-	public function add($data, $id)
-	{
-		/*$data = Validation::factory($data);
-
-		$data->pre_filter('trim', true);
-		foreach($this->required_fields as $field)
-		{
-			$data->add_rules($field, 'required');
-		}
-
-		if ($data->validate())
-		{
-			$comment = new Model_Blog_Comment;
-			
-			$comment->blog_article_id = $id;
-			
-			foreach($data->as_array() as $key => $value)
-			{
-				$comment->$key = $value;
-			}
-			$comment->save();
-		}
-
-		$this->errors = $data->errors();*/
-	}
-
-	public function save(array &$data)
+	public function add(array & $array, $reference)
 	{
 		if (empty($array))
 			return false;
 
-		$data = Validation::factory($data)
+		$array = Validation::factory($array)
 			->pre_filter('trim')
-
 			->add_rules('username', 'required')
 			->add_rules('email', 'required', 'email')
 			->add_rules('message', 'required');
 
-		if ($data['website'])
+		if (isset($array['website']) AND ! empty($array['website']))
+			$array->add_rules('website', 'url');
+
+		if ($array->validate())
+		{
+			$comment = new Blog_Comment_Model;
+			$comment->blog_article_id = $reference;
+			
+			foreach($array->as_array() as $key => $value)
+			{
+				if (in_array($key, $this->fields))
+					$comment->$key = $value;
+			}
+			$comment->save();
+			
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Validates and optionally saves a new user record from an array.
+	 *
+	 * @param  array    values to check
+	 * @param  boolean  save the record when validation succeeds
+	 * @return boolean
+	 */
+	public function validate(array & $array, $save = FALSE)
+	{
+		$array = Validation::factory($array)
+			->pre_filter('trim')
+			->add_rules('username', 'required')
+			->add_rules('email', 'required', 'email')
+			->add_rules('message', 'required');
+
+		if (isset($array['website']) AND ! empty($array['website']))
+			$array->add_rules('website', 'url');
+
+		return parent::validate($array, $save);
+	}
+
+
+	public function save(array &$data, $reference)
+	{
+		if (empty($data))
+			return false;
+
+		$data = Validation::factory($data)
+			->pre_filter('trim')
+			->add_rules('username', 'required')
+			->add_rules('email', 'required', 'email')
+			->add_rules('message', 'required');
+
+		if (isset($data['website']) AND ! empty($data['website']))
 			$data->add_rules('website', 'url');
 
 		if ($data->validate())
 		{
 			$comment = new Blog_Comment_Model;
-			$comment->{$this->type} = $this->type_id;
+			$comment->blog_article_id = $reference;
 			
 			foreach($data->as_array() as $key => $value)
 			{
-				$comment->$key = $value;
+				if (in_array($key, $this->fields))
+					$comment->$key = $value;
 			}
 			$comment->save();
 		}

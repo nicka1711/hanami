@@ -6,7 +6,7 @@ class javascript_Core
 
 	static public function add($file)
 	{
-		self::$scripts[] = $file;
+		self::$scripts[md5(dirname($file))] = $file;
 	}
 
 	static public function render($print = FALSE)

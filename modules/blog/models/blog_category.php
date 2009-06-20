@@ -1,19 +1,19 @@
 <?php 
 
-class Model_Blog_Category extends ORM {
+class Blog_Category_Model extends ORM {
 
 	protected $has_and_belongs_to_many = array
 	(
-		'blog_post'
+		'articles' => 'blog_articles'
 	);
 	
 
-	public function __construct($id = FALSE)
+	/*public function __construct($id = FALSE)
 	{
 		parent::__construct($id);
 	}
 	
-	/*function count($ref_id)
+	function count($ref_id)
 	{
 		$sql = "SELECT
                     COUNT(comment.id) AS count

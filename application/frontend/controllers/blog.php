@@ -35,9 +35,46 @@ class Blog_Controller extends Frontend_Controller
 			'auto_hide'      => true
 		));
 
-		$this->template->content = View::factory('blog/articles')
+		$this->template->content = View::factory('blog/index')
 			->set('articles', $articles->orderby('posted', 'DESC')->find_all($limit, $offset))
 			->set('pagination', $pagination);
+	}
+
+	/**
+	 * Displays the blog archive
+	 * 
+	 * @param int year
+	 * @param int month
+	 */
+	public function archive($year = NULL, $month = NULL)
+	{
+
+		$this->page->title[] = Kohana::lang('blog.archive');
+		$articles = new Blog_Article_Model;
+		
+		if ($year  !== NULL)
+		{
+			$articles->where('YEAR(posted) = '.$year);
+			$this->page->title[] = (int) $year;
+		}
+		
+		if ($month !== NULL) 
+		{
+			$articles->where('MONTH(posted) = '.(int) $month);
+			$this->page->title[] = date('F', $month);
+		}
+		
+		$articles->orderby('posted', 'DESC');
+
+		$archive = array();
+		foreach($articles->find_all() as $article)
+		{
+			$time = strtotime($article->posted);
+			$archive[date('Y', $time)][date('F', $time)][] = $article;
+		}
+
+		$this->template->content = View::factory('blog/archive')
+			->set('archive', $archive);
 	}
 
 	/**
@@ -69,48 +106,18 @@ class Blog_Controller extends Frontend_Controller
 			$form = View::factory('blog/comment/form')
 				->bind('comment', $comment);
 
-			$data = $this->input->post('comment', array());
-
-//echo Kohana::debug($data);
-//			$errors = array();
-			$new_comment = Comment::factory('blog_article', $article->id)->save($data);
-			if ( ! empty ($new_comment->errors))
+			$data = $this->input->post('comment', FALSE);
+			if ($data AND ! Blog_Comment::factory()->add($data, $article->id))
 			{
-				$form->bind('errors', $new_comment->errors);//echo Kohana::debug($new);//$errors = $new->errors;
+				$comment = arr::overwrite($comment, $data->as_array());
+				$form->bind('errors', $data->errors());
 			}
-			/*if (request::method() === 'post')
-			{
-				$data = Validation::factory($_POST['comment']);
-	
-				if ($data->validate())
-				{
-					$new = new Blog_Comment_Model;
-					foreach($data->as_array() as $key => $value)
-					{
-						$new->$key = $value;
-					}
-					$new->blog_article_id = $article->id;
-					//echo Kohana::debug($data, 'saving data');
-					$new->save();
-				}
-				else
-				{
-					$comment = arr::overwrite($data->as_array());
-				}
-			}*/
-		
-			//, 'errors' => $errors));
 		}
-
-		// Find related comments
-		$comments      = $article->blog_comments;
-		$comment_count = count($comments);
 
 		$this->template->content = View::factory('blog/article/details')
 			->bind('article', $article)
-			->bind('comment_count', $comment_count)
 			->set('comments', View::factory('blog/comment/index')
-				->bind('comments', $comments)
+				->bind('comments', $article->blog_comments)
 				->bind('form', $form));
 	}
 	
@@ -140,28 +147,6 @@ class Blog_Controller extends Frontend_Controller {
 	public function index()
 	{
 		$this->articles();
-	}
-
-	public function archive($year = NULL, $month = NULL)
-	{
-		$articles = new Blog_Article_Model;
-
-		($year  == NULL) or $articles->where('YEAR(posted) = '.(int) $year);
-		($month == NULL) or $articles->where('MONTH(posted) = '.(int) $month);
-
-		$articles->orderby('posted', 'DESC');
-
-		$list = array();
-		foreach($articles->find_all() as $article)
-		{
-			$time = strtotime($article->posted);
-			$list[date('Y', $time)][date('F', $time)][] = $article;
-		}
-
-		$this->page->title[] = Kohana::lang('blog.archive');
-
-		$this->template->content = View::factory('blog/archive')
-			->set('list', $list);
 	}
 
 	public function article($title)

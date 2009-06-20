@@ -53,13 +53,25 @@ input.text {
 
 
 
+div#header {
+	background: #020202;
+	color: #fff;
+}
 
 
 
 
+ul#navigation > li {
+	display: inline;
+}
 
+ul#navigation > li > ul {
+	display: none;
+}
 
-
+ul#navigation > li:hover > ul {
+	display: block;
+}
 
 
 

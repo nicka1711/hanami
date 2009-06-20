@@ -6,6 +6,7 @@
 ?>
   <h3><?php echo html::anchor($url, $article->title); ?></h3>
 
+  <p><?php echo $article->author->username; ?></p>
   <p><?php echo date('d.m.Y H:i', strtotime($article->posted)); ?></p>
 
   <div class="content">
@@ -13,5 +14,5 @@
   </div>
 
 
-  <p><?php echo html::anchor($url.'#comments', sprintf(Kohana::lang('blog.counted_comments'), count($article->blog_comments))); ?></p>
+  <p><?php echo html::anchor($url.'#comments', __('Comments (:count)', array(':count' => count($article->blog_comments)))); ?></p>
 </div>

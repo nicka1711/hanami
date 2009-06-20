@@ -5,3 +5,5 @@
  * Sets the default route to "welcome"
  */
 $config['_default'] = 'dashboard';
+
+//$config['blog/article/(.+)/(\d+)'] = '';

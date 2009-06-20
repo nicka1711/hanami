@@ -10,12 +10,17 @@
  * @copyright
  * @license
  */
-class Blog_Controller extends Backend_Controller {
-	/**
-	 * Display all articles
-	 * 
-	 * @param string ID
-	 */
+class Blog_Admin_Demo_Controller extends Controller {
+
+	// Do not allow to run in production
+	const ALLOW_PRODUCTION = FALSE;
+
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
+	
 	public function index()
 	{
 		echo View::factory('blog/install');
@@ -48,7 +53,7 @@ class Blog_Controller extends Backend_Controller {
 
 	public function article($id = NULL)
 	{
-		$article = new Blog_Article_Model($id);
+		$article = new Model_Blog_Article($id);
 
 		$form = new Forge(NULL, 'Write a blog article');
 
@@ -152,7 +157,7 @@ class Blog_Controller extends Backend_Controller {
 		}*/
 	}
 
-	private function articles()
+	public function articles()
 	{
 		// Article model
 		$article = ORM::factory('blog_article');
