@@ -4,7 +4,7 @@ class Blog_Comment_Model extends ORM {
 
 	protected $belongs_to = array
 	(
-		'blog_article'
+		'blog_articles'
 	);
 	
 	/*function count($ref_id)

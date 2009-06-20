@@ -8,7 +8,15 @@ class Settings_Controller extends Backend_Controller {
 		$this->class = get_class();
 	}
 
-	public function index(){}
+	public function index()
+	{
+		$this->template->content = 'foobar';
+	}
+
+	public function user()
+	{
+		$this->template->content = 'foobar';
+	}
 
 	public function menu()
 	{

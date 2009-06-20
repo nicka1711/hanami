@@ -1,6 +1,6 @@
 <form action="/<?php echo url::current() ?>#comments" method="post">
 <fieldset>
-  <h5 id="respond">Einen Kommentar schreiben</h5>
+  <h5 id="respond"><?php echo __('Write a respond') ?></h5>
 
 <?php
 

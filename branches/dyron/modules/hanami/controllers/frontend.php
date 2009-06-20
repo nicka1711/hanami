@@ -77,8 +77,8 @@ class Frontend_Controller extends Template_Controller {
 			$this->template->set('scripts', html::stylesheet($stylesheet));
 		}
 			
-		/*if ( ! IN_PRODUCTION)
-			$this->template->profiler = new Profiler;*/
+		if ( ! IN_PRODUCTION)
+			$this->template->profiler = new Profiler;
 
 		// Convert xhtml to html
 		if ( ! $this->xhtml)

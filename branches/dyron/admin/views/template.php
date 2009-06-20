@@ -14,8 +14,10 @@
 
   <body class="admin">
     <div id="page">
-      <h1>Administration</h1>
+      <div id="header">
+        <h1>Administration</h1>
 <?php echo $navigation ?>
+      </div>
 
 <?php echo $content ?>
 

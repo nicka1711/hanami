@@ -1,26 +1,16 @@
-<?php defined('SYSPATH') or die('No direct access allowed.');
+<?php defined('SYSPATH') OR die('No direct access allowed.');
 /**
  * @package  Core
  *
- * Default language locale name.
- * @see http://php.net/locales
+ * Default language locale name(s).
+ * First item must be a valid i18n directory name, subsequent items are alternative locales
+ * for OS's that don't support the first (e.g. Windows). The first valid locale in the array will be used.
+ * @see http://php.net/setlocale
  */
-//$config['language'] = 'en_US';
-$config['language'] = array('en_US');//'de_DE', 'German_Germany');
-
-/*$config['available_langs'] = array
-(
-	'en_US',
-	'de_DE',
-		);*/
-
-/**
- * Default country locale.
- */
-$config['country'] = 'USA';
+$config['language'] = array('de_DE', 'German_Germany');
 
 /**
  * Locale timezone. Defaults to use the server timezone.
  * @see http://php.net/timezones
  */
-$config['timezone'] = '';
+$config['timezone'] = 'Europe/Berlin';
