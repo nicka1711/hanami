@@ -13,7 +13,7 @@
 define('HANAMI_VERSION', '0.1');
 define('HANAMI_CODENAME', '');
 
-new Hanami;
+Hanami::setup();
 
 // Load i18n
 new I18n;

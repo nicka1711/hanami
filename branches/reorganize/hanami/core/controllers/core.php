@@ -1,6 +1,6 @@
 <?php 
 
-class Frontend_Controller extends Template_Controller {
+class Core_Controller extends Template_Controller {
 
 	public $files = array
 	(
@@ -38,9 +38,9 @@ class Frontend_Controller extends Template_Controller {
 		$this->session = Session::instance();
 
 		// Redirect to login if needed
-		if ($this->login_required === TRUE)
+		if ($this->login_required === TRUE AND ! Auth::factory()->logged_in())
 		{
-			!Auth::factory()->logged_in() and (url::current() !== 'login') and url::redirect('/login');
+			url::redirect('/login');
 		}
 
 		$this->page->title[] = sprintf('Hanami CMS v%s', HANAMI_VERSION);//Kohana::lang('common.home_page');
@@ -80,6 +80,8 @@ class Frontend_Controller extends Template_Controller {
 		if ( ! IN_PRODUCTION)
 			$this->template->profiler = new Profiler;
 
+
+echo Kohana::debug(Kohana::config('core.modules'));
 		// Convert xhtml to html
 		if ( ! $this->xhtml)
 		{
