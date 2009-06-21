@@ -13,12 +13,12 @@ RewriteCond %{HTTP_HOST} ^www\.(.+) [NC]
 RewriteRule ^(.*)$ http://%1/$1 [L,R=301,QSA]
  
 # Rewrite admin. to admin.php/URL
-RewriteCond %{HTTP_HOST} ^admin\.(.+) [NC]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule .* admin.php/$0 [PT,L,QSA]
+#RewriteCond %{HTTP_HOST} ^admin\.(.+) [NC]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule .* index.php/$0 [PT,L,QSA]
 
 # Protect application files from being viewed
-RewriteRule ^application|modules|system - [F,L]
+RewriteRule ^application|hanami|modules|system - [F,L]
 
 # Do not enable rewriting for files that exist
 RewriteCond %{REQUEST_FILENAME} !-f
