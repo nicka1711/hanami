@@ -8,5 +8,6 @@
  */
 $config['enable'] = array
 (
-	'hanami'
+	'hanami',
+	'themes'
 );
