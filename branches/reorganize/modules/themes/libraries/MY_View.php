@@ -12,6 +12,10 @@ class View extends View_Core {
 	 */
 	public function set_filename($name, $type = NULL)
 	{
+		if ( ! Kohana::config('themes.enabled'))
+		{
+			return parent::set_filename($name, $type);
+		}
 		$paths = array(
 			//'themes/'.Themes::current(),
 			'',
