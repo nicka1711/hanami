@@ -1,0 +1,1 @@
+<?php echo html::image($src, $alt); ?>
