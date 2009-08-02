@@ -24,5 +24,5 @@ $config['default'] = array
 	'size'          => 50,                                   // The size of the returned gravatar
 	'view'          => 'gravatar/image',                     // The default view
 	'rating'        => Gravatar::GRAVATAR_G,                 // The default rating
-	'alt'           => FALSE,                                // Alternate image string, FALSE to omit, string to include
+	'alt'           => 'Gravatar for {email}',                                // Alternate image string, FALSE to omit, string to include
 );

@@ -4,7 +4,7 @@
  *
  * $Id$
  *
- * @package    Frontend
+ * @package    Hanami
  * @author     Hanami Team
  * @copyright  (c) 2008 Hanami Team
  * @license    
