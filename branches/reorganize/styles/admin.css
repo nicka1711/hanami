@@ -75,6 +75,13 @@ ul#navigation > li:hover > ul {
 
 
 
+table.blog {
+	
+}
 
-
+table.blog col.author,
+table.blog td.author,
+table.blog th.author {
+	text-align: center;
+}
 
