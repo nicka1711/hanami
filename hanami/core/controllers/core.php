@@ -1,6 +1,6 @@
 <?php 
 
-class Core_Controller extends Template_Controller {
+class Website_Controller extends Template_Controller {
 
 	public $files = array
 	(

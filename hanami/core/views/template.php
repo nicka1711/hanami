@@ -5,11 +5,10 @@
 
 <?php 
 
-	/*echo $scripts;*/
-	//echo '    '.$styles;
+	echo $scripts;
+	echo '    '.$styles;
 
 ?>
-    <link type="text/css" rel="stylesheet" media="screen" href="/styles/screen.css"/>
 
     <link rel="icon" type="image/jpeg" href="/hanami.jpg"/>
 
@@ -25,12 +24,13 @@
         <h2><?php echo $title ?></h2>
       </div>
 
-<?php echo $navigation ?><?php //echo __('This is a test string.')?>
+<?php echo $navigation ?><?php echo __('This is a test string.')?>
 
       <hr />
 
       <div id="content">
 <?php echo $content ?>
+<?php // echo Kohana::debug(Kohana::config('core.modules')) ?>
       </div>
 
       <hr />

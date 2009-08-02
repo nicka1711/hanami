@@ -10,7 +10,7 @@
  * @copyright
  * @license
  */
-class Blog_Controller extends Backend_Controller {
+class Blog_Controller extends Admin_Controller {
 
 	/**
 	 * Displays all articles
@@ -69,9 +69,10 @@ class Blog_Controller extends Backend_Controller {
 
 	public function article($id = NULL)
 	{
-		$article = new Blog_Article_Model($id);
+		$article = Model::factory('blog_article', (int) $id);//new Blog_Article_Model($id);
 
-		$form = new Forge(NULL, 'Write a blog article');
+		$this->page->title[] = $article->title;
+		/*$form = new Forge(NULL, 'Write a blog article');
 
 		$form->input('title')->label(TRUE)->rules('required|length[2,255]');
 		$form->textarea('body')->label(TRUE)->cols(50)->rows(15)->rules('required');
@@ -140,11 +141,11 @@ class Blog_Controller extends Backend_Controller {
 			// Go back to the account page
 			//url::redirect('articles');
 		}
-
-		echo View::factory('blog/article_form')
-			->bind('article', $article)
-			->set('errors', $_POST->errors('error.form'));
-	}
+*/
+		$this->template->content = View::factory('blog/article/form')
+			->bind('article', $article);
+//				->set('errors', $_POST->errors('error.form'));
+	/*}
 
 	public function comments()
 	{

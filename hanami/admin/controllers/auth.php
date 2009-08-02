@@ -1,6 +1,6 @@
 <?php 
 
-class Auth_Controller extends Backend_Controller {
+class Auth_Controller extends Admin_Controller {
 	
 	private $auth;
 

@@ -9,7 +9,7 @@
  * @copyright  (c) 2008 Hanami Team
  * @license    
  */
-class Home_Controller extends Frontend_Controller {
+class Home_Controller extends Website_Controller {
 	
 	function __construct()
 	{

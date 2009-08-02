@@ -4,7 +4,7 @@ class Auth_Controller extends Template_Controller {
 	
 	private $auth;
 
-	public $template = 'auth/template';
+	//public $template = 'auth/template';
 
 	public function __construct()
 	{
