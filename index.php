@@ -22,7 +22,7 @@ define('IN_PRODUCTION', FALSE);
  *
  * This path can be absolute or relative to this file.
  */
-$kohana_application = 'hanami';
+$kohana_application = 'hanami/app';
 
 /**
  * Kohana modules directory. This directory should contain all the modules used

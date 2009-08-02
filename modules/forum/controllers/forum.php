@@ -1,6 +1,6 @@
 <?php
 
-class Forum_Controller extends Frontend_Controller {
+class Forum_Controller extends Website_Controller {
 
 	function __construct()
 	{
