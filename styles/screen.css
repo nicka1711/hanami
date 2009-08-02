@@ -1,9 +1,9 @@
 @charset "utf-8";
 
-@import url("reset.css") screen;
-
-@import url("screen/base.css") screen;
-
+* {
+	margin: 0;
+	padding: 0;	
+}
 
 body { 
 	padding: 100px 0 0;
@@ -36,8 +36,8 @@ ul { list-style: none; padding: 1em 0; }
 ul li { display: inline; padding-right: 1em; }
 ul li:before { content: '» '; }
 code { color: #381a0c; }
-/*p.intro { padding: 1em 0; font-size: 1.2em; }
-p.copyright { font-size: 0.8em; text-transform: uppercase; color: #44640b; }*/
+p.intro { padding: 1em 0; font-size: 1.2em; }
+p.copyright { font-size: 0.8em; text-transform: uppercase; color: #44640b; }
 
 div#content {
 }
@@ -167,5 +167,50 @@ div#blog .article .content {
 	width: 50%;
 }
 
+html {
+	background: #96ADCF url('/images/background.jpg') top repeat-x;		 	
+	height: 100%;
+}
 
+body { 
+	background: url('/images/flower.jpg') no-repeat; 
+	height: 100%;
+}
+
+
+
+
+
+
+
+
+
+.error {
+	border: 1px solid #ff0000;
+	background: #FFCABF;
+}
+
+
+
+
+
+
+
+
+
+
+.clearfix:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+.clearfix {display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
 
