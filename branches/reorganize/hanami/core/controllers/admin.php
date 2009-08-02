@@ -1,6 +1,6 @@
 <?php 
 
-class Admin_Controller extends Frontend_Controller {
+class Admin_Controller extends Website_Controller {
 
 	// Template view name
 	protected $page_id	= 'admin';

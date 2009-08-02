@@ -2,7 +2,7 @@
 /**
  * 
  */
-class Blog_Controller extends Frontend_Controller 
+class Blog_Controller extends Website_Controller 
 {
 	public function __construct()
 	{
@@ -133,7 +133,7 @@ class Blog_Controller extends Frontend_Controller
 
 <?php 
 
-class Blog_Controller extends Frontend_Controller {
+class Blog_Controller extends Website_Controller {
 
 	private $errors = array();
 

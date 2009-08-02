@@ -19,21 +19,22 @@ final class Hanami
 	public static function setup()
 	{
 		Event::add('system.ready', array('Hanami', 'modules'));
-		
-		// Enable Hanami output handling
-		Event::add('system.shutdown', array('Hanami', 'shutdown'));
-	}
 
-	/**
-	 * Triggers the shutdown of Hanami
-	 *
-	 * @return  void
-	 */
-	public static function shutdown()
-	{
+		//Event::add('system.routing', array('Hanami', 'install'));
+
 		Event::add('system.display', array('Hanami', 'render'));
 	}
 
+	/**
+	 * 
+	 */
+	static public function install()
+	{
+		if (is_dir(APPPATH.'install') and (url::current() !== 'installation'))
+		{
+			url::redirect('/installation');
+		}
+	}
 
 	/**
 	 * Adding custom modules to the module stack
@@ -46,25 +47,20 @@ final class Hanami
 		$default = Kohana::config('core.modules');
 
 		// Get the modules from the DB
-		$modules   = ORM::factory('module')->find_all();
-		$installed = array();
-		foreach($modules as $module)
+		$modules = array();
+		foreach(ORM::factory('module')->find_all() as $module)
 		{
 			/**
 			  * @todo More module verifying
 			  */ 
 			if (is_dir(MODPATH.$module->name))
-				$installed[] = MODPATH.$module->name;
+				$modules[] = MODPATH.$module->name;
 		}
 
-/*$input = array("red", "green", "blue", "yellow");
-echo Kohana::debug(array_splice($input, 1, -1), $input);
-		echo Kohana::debug($default, $installed);
-*/
-		array_splice($default, 2, 0, $installed);
+		// Inject the new modules
+		array_splice($default, 3, 0, $modules);
 
-		//echo Kohana::debug($default);
-
+		// Remove the admin module, while being not in the admin app
 		if (strpos($_SERVER['SERVER_NAME'], 'admin') === FALSE)
 		{
 			unset($default[0]);
@@ -76,36 +72,24 @@ echo Kohana::debug(array_splice($input, 1, -1), $input);
 			unset($required[array_search(APPPATH.'/install', $required)]);
 		}*/
 
-
+		// Set the new module stack
 		Kohana::config_set('core.modules', $default);
-	}
 
-
-
-
-
-
-
-/*
-
-
-
-
-
-	public function __construct()
-	{
-		$this->modules();
-
-		$this->themes();
-
-		//Event::add('system.routing', array(__CLASS__, 'install'));
-	}
-
-	static public function install()
-	{
-		if (is_dir(APPPATH.'install') and (strpos(url::current(), 'installation') === FALSE))
+		// We need to manually include the hook file for each module,
+		// because the additional modules aren't loaded until after the application hooks are loaded.
+		foreach($modules as $module)
 		{
-			url::redirect('/installation');
+			if (is_dir($module.'/hooks'))
+			{
+				$d = dir($module.'/hooks'); // Load all the hooks
+				while (($entry = $d->read()) !== FALSE)
+				{
+					if ($entry[0] != '.')
+					{
+						include $module.'/hooks/'.$entry;
+					}
+				}
+			}
 		}
 	}
 
@@ -128,6 +112,21 @@ echo Kohana::debug(array_splice($input, 1, -1), $input);
 				Kohana::$output
 			);
 		}
+	}
+
+/*
+
+
+
+
+
+	public function __construct()
+	{
+		$this->modules();
+
+		$this->themes();
+
+		//Event::add('system.routing', array(__CLASS__, 'install'));
 	}
 
 	static private function themes()

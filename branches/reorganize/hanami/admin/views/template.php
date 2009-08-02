@@ -19,8 +19,9 @@
 <?php echo $navigation ?>
       </div>
 
+      <div id="content">
 <?php echo $content ?>
-
+      </div>
     </div>
   </body>
 </html>

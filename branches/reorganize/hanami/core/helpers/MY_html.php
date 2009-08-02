@@ -5,9 +5,9 @@
  * $Id$
  *
  * @package    Hanami
- * @author     Hanami Team ($Author$)
- * @copyright  §copyright$
- * @license    $Licence$
+ * @author     Hanami Team
+ * @copyright  (c) 2008-2009 Hanami Team
+ * @license    
  */
 class html extends html_Core {
 

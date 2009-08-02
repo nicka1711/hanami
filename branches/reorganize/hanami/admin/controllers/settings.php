@@ -1,6 +1,6 @@
 <?php 
 
-class Settings_Controller extends Backend_Controller {
+class Settings_Controller extends Admin_Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -22,7 +22,7 @@ class Settings_Controller extends Backend_Controller {
 	{
 		$this->page->title[] = Kohana::lang('admin.modules');
 
-		$modules = array(
+		/*$modules = array(
 			array(
 				'name' => 'Home page', 
 				'methods' => array(array(
@@ -59,10 +59,10 @@ class Settings_Controller extends Backend_Controller {
 				'name'    => $module->name,
 				'methods' => $module_methods
 			);
-		}
+		}*/
 
-		$this->template->content = View::factory('modules/index')
-			->set('modules', $modules);
+		$this->template->content = View::factory('settings/menu');/*View::factory('modules/index')
+			->set('modules', $modules);*/
 	}
 
 } // End Modules Controller

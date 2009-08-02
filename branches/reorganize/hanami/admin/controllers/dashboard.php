@@ -1,6 +1,6 @@
 <?php 
 
-class Dashboard_Controller extends Backend_Controller {
+class Dashboard_Controller extends Admin_Controller {
 
 	public function __construct() {
 		parent::__construct();
