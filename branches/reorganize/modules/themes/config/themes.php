@@ -3,4 +3,6 @@
  * @package  Themes
  *
  */
-$config['enabled'] = FALSE;
+$config['enabled'] = TRUE;
+
+$config['default'] = 'default';
