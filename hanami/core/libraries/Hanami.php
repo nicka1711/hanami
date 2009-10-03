@@ -12,13 +12,32 @@
 final class Hanami
 {
 	/**
+	 * @var  object javascript object
+	 */
+	public static $js;
+
+	/**
+	 * var  object stylesheet object
+	 */
+	public static $css;
+
+	/**
 	 * 
 	 *
 	 * @return  void
 	 */
-	public static function setup()
+	public static function setup(array $config = NULL)
 	{
+		static $run;
+
+		if ($run === TRUE) return;
+
+		$run = TRUE;
+
 		Event::add('system.ready', array('Hanami', 'modules'));
+
+		self::$js  = Collector::instance('js');
+		self::$css = Collector::instance('css');
 
 		//Event::add('system.routing', array('Hanami', 'install'));
 
@@ -30,7 +49,7 @@ final class Hanami
 	 */
 	static public function install()
 	{
-		if (is_dir(APPPATH.'install') and (url::current() !== 'installation'))
+		if (is_dir(DOCROOT.'install') and (url::current() !== 'installation'))
 		{
 			url::redirect('/installation');
 		}
@@ -60,17 +79,11 @@ final class Hanami
 		// Inject the new modules
 		array_splice($default, 3, 0, $modules);
 
-		// Remove the admin module, while being not in the admin app
-		if (strpos($_SERVER['SERVER_NAME'], 'admin') === FALSE)
+		// Remove the installation module from the module stack 
+		if ( ! is_dir(APPPATH.'/install'))
 		{
 			unset($default[0]);
 		}
-
-		// Remove the installation module from the module stack 
-		/*if ( ! is_dir(APPPATH.'/install'))
-		{
-			unset($required[array_search(APPPATH.'/install', $required)]);
-		}*/
 
 		// Set the new module stack
 		Kohana::config_set('core.modules', $default);
@@ -114,23 +127,9 @@ final class Hanami
 		}
 	}
 
-/*
-
-
-
-
-
-	public function __construct()
+	private function __construct()
 	{
-		$this->modules();
-
-		$this->themes();
-
-		//Event::add('system.routing', array(__CLASS__, 'install'));
+		// This is a static class
 	}
 
-	static private function themes()
-	{
-
-	}*/
-} // End Hanami library
+} // End Hanami
