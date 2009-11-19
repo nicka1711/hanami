@@ -10,8 +10,7 @@ class Dashboard_Controller extends Admin_Controller {
 
 	public function index()
 	{
-		//$this->page->title[] = Kohana::lang('admin.administration');
-		$this->page->title[] = Kohana::lang('admin.dashboard');
+		$this->page->title[] = __('Dashboard');
 
 		$this->template->content = 'foobar';
 	}
