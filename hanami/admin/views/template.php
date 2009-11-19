@@ -3,7 +3,13 @@
   <head>
     <meta http-equiv="Content-Type" content="<?php echo $content_type ?>; charset=<?php echo $charset ?>"/>
 
-    <link type="text/css" rel="stylesheet" media="screen" href="/styles/admin.css"/>
+<?php 
+
+	echo Hanami::$js->render();
+	echo Hanami::$css->render();
+
+?>
+    <!-- <link type="text/css" rel="stylesheet" media="screen" href="/styles/admin.css"/> -->
 
     <link type="image/x-icon" rel="icon" href="/favicon.ico"/>
     <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico"/>

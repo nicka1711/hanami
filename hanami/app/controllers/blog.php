@@ -1,6 +1,13 @@
-<?php
+<?php defined('SYSPATH') OR die('No direct access allowed.');
 /**
- * 
+ * Blog Controller
+ *
+ * $Id$
+ *
+ * @package    Hanami
+ * @author     Hanami Team
+ * @copyright  (c) 2008 Hanami Team
+ * @license 
  */
 class Blog_Controller extends Website_Controller 
 {

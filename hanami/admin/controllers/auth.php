@@ -1,20 +1,22 @@
-<?php 
+<?php defined('SYSPATH') OR die('No direct access allowed.');
+/**
+ * Basic Hanami auth controller
+ * 
+ * $Id$
+ *
+ * @package    Hanami
+ * @author     Hanami Team
+ * @copyright  (c) 2008-2009 Hanami Team
+ * @license    
+ */
+class Auth_Controller extends Website_Controller {
 
-class Auth_Controller extends Admin_Controller {
-	
-	private $auth;
-
+	// Template view name
 	public $template = 'auth/template';
 
-	public function __construct()
+	public function index() 
 	{
-		parent::__construct();
-
-		$this->class = get_class();
-	}
-
-	public function index() {
-		
+		url::redirect('/login');
 	}
 
 	/**
@@ -23,13 +25,13 @@ class Auth_Controller extends Admin_Controller {
 	public function login()
 	{
 		//
-		ORM::factory('user')->login($_POST, '/dashboard');
+		ORM::factory('user')->login($_POST, '/');
 
-		$this->page->title[] = Kohana::lang('auth.login');
+		$this->page->title[] = __('Login');
 
 		// Load content
 		$this->template->content = View::factory('auth/login')
-			->set('username', $this->input->post('username'))
+			->set('username', $this->input->post('login.username'))
 			->set('errors', $_POST->errors('form'));
 	}
 

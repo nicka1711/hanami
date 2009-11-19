@@ -1,28 +1,22 @@
-<?php 
-
+<?php defined('SYSPATH') OR die('No direct access allowed.');
+/**
+ * Basic Hanami controller
+ * 
+ * $Id$
+ *
+ * @package    Hanami
+ * @author     Hanami Team
+ * @copyright  (c) 2008-2009 Hanami Team
+ * @license    
+ */
 class Website_Controller extends Template_Controller {
-
-	public $files = array
-	(
-		'header'     => 'header',
-		'navigation' => 'navigation',
-		'footer'     => 'footer'
-	);
-
-	public $scripts = array();
-	public $styles  = array();
 
 	protected $page_id    = 'page';
 	protected $page_title = array();
 
 	protected $xhtml = false;
 
-//	protected $header;
-//	protected $footer;
-
 	public $login_required = FALSE;
-
-	protected $in_admin = FALSE;
 
 	/**
 	 * Template loading and setup routine.
@@ -43,10 +37,13 @@ class Website_Controller extends Template_Controller {
 			url::redirect('/login');
 		}
 
-		$this->page->title[] = __('Hanami CMS v$version', array('$version' => HANAMI_VERSION));//Kohana::lang('common.home_page');
+		$this->page->title[] = __('Hanami CMS v$version', array('$version' => HANAMI_VERSION));
 
-		$this->scripts[] = 'mootools.js';
-		$this->styles[] = 'screen.css';
+		Hanami::$js->add('mootools.js');
+		Hanami::$js->add('hanami.js');
+		Hanami::$js->add('hanami/search.js');
+		Hanami::$css->add('screen.css');
+		Hanami::$css->add('print.css');
 	}
 
 	public function _render()
@@ -70,15 +67,6 @@ class Website_Controller extends Template_Controller {
 				// ->set('breadcrumb', View::factory('breadcrumb')->set('crumbs', html::breadcrumb()))
 			->set('navigation', View::factory('navigation'));
 			// ->set('footer', $this->footer);
-
-		foreach($this->scripts as $script)
-		{
-			$this->template->set('scripts', html::script('scripts/'.$script));
-		}
-		foreach($this->styles as $stylesheet)
-		{
-			$this->template->set('styles', html::stylesheet('styles/'.$stylesheet));
-		}
 
 		// Convert xhtml to html
 		if ( ! $this->xhtml)

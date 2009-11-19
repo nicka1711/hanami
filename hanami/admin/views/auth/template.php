@@ -14,7 +14,7 @@
 
   <body class="auth">
     <div id="page">
-      <h1>Verwaltung</h1>
+      <h1><?php echo __('Administration') ?></h1>
 
 <?php echo $content ?>
 

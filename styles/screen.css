@@ -5,14 +5,21 @@
 	padding: 0;	
 }
 
-body { 
-	padding: 100px 0 0;
-	font-size: 76%;
-	font-family: Arial, Verdana, sans-serif; 
-	color: #111; 
-	line-height: 1.5; 
-	/*text-align: center; */
+html, body {
+	height: 100%;
 }
+
+html {
+	background: #96ADCF url('../images/background.jpg') top repeat-x;		 	
+}
+
+body { 
+	background: transparent url('../images/flower.jpg') no-repeat; 
+	color: #111; 
+	padding: 100px 0 0;
+}
+
+
 
 div#page {
 	background: #ffffff;
@@ -25,43 +32,25 @@ div#page {
 .installation #page {
 }
 
-
-div, h1, h2, a, p, code, ul { font-family: inherit; color: inherit; vertical-align: baseline; text-decoration: none; }
-h1 { 
-	padding:  0 0; 
-
-}
-a { text-decoration: underline; }
-ul { list-style: none; padding: 1em 0; }
-ul li { display: inline; padding-right: 1em; }
-ul li:before { content: '» '; }
-code { color: #381a0c; }
-p.intro { padding: 1em 0; font-size: 1.2em; }
-p.copyright { font-size: 0.8em; text-transform: uppercase; color: #44640b; }
-
 div#content {
 }
 
 
 
 
+/* --- Blog styles --- */
 
+div#blog .article {
+	margin: 0 0 2em;
+}
 
-#navigation li {
-	background: #ffffff;
+div#blog .article .content {
+	margin: 5em;
 }
 
 
 
-
-
-
-
-
-
-
-
-
+/* --- Calendar styles --- */
 
 table#calendar {
 	border-collapse: collapse;
@@ -133,19 +122,6 @@ table#calendar .prev-next {
 
 
 
-div#blog .article {
-	margin: 0 0 2em;
-}
-
-div#blog .article .content {
-	margin: 5em;
-}
-
-
-
-
-
-
 
 
 
@@ -167,16 +143,6 @@ div#blog .article .content {
 	width: 50%;
 }
 
-html {
-	background: #96ADCF url('/images/background.jpg') top repeat-x;		 	
-	height: 100%;
-}
-
-body { 
-	background: url('/images/flower.jpg') no-repeat; 
-	height: 100%;
-}
-
 
 
 
@@ -189,28 +155,3 @@ body {
 	border: 1px solid #ff0000;
 	background: #FFCABF;
 }
-
-
-
-
-
-
-
-
-
-
-.clearfix:after {
-    content: "."; 
-    display: block; 
-    height: 0; 
-    clear: both; 
-    visibility: hidden;
-}
-
-.clearfix {display: inline-block;}
-
-/* Hides from IE-mac \*/
-* html .clearfix {height: 1%;}
-.clearfix {display: block;}
-/* End hide from IE-mac */
-

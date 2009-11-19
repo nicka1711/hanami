@@ -1,12 +1,5 @@
 @charset "utf-8";
 
-@import url("reset.css") screen;
-
-/*@import url("screen/base.css") screen;*/
-
-
-
-
 body.auth {
 	height: auto;
 	min-height: 375px;
@@ -65,10 +58,13 @@ ul#navigation > li {
 	display: inline;
 }
 
-ul#navigation > li > ul > li {
-	display: block;
+ul#navigation > li > ul {
+	display: none;
 }
 
+ul#navigation > li:hover > ul {
+	display: block;
+}
 
 
 

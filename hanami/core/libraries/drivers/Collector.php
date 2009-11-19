@@ -2,9 +2,9 @@
 /**
  * $Id$
  * 
- * @package   
- * @author    Hanami Team
- * @copyright 
+ * @package    Hanami
+ * @author     Hanami Team
+ * @copyright  (c) 2008-2009 Hanami Team
  * @license   
  */
 abstract class Collector_Driver {
